@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import { useExam } from './hooks/useExam'
+import HomeMenu from './components/HomeMenu'
+import WikiView from './components/WikiView'
+import wikiContent, { DOMAIN_COLORS, introContent } from './data/wikiContent'
+import devopsWikiContent, { DEVOPS_DOMAIN_COLORS, devopsIntroContent } from './data/devopsWikiContent'
 import StartScreen from './components/StartScreen'
 import ExamHeader from './components/ExamHeader'
 import SidebarNav from './components/SidebarNav'
@@ -12,14 +16,49 @@ import ResultsScreen from './components/ResultsScreen'
 export default function App() {
   const { state, startExam, answerQuestion, toggleFlag, saveNote, finishExam, resetToStart } =
     useExam()
+  const [view, setView] = useState('home')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [assistantOpen, setAssistantOpen] = useState(false)
   const [notepadOpen, setNotepadOpen] = useState(false)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [studyMode, setStudyMode] = useState(false)
 
+  if (view === 'home') {
+    return (
+      <HomeMenu
+        onSelectExam={() => setView('exam')}
+        onSelectWikiAi200={() => setView('wiki-ai200')}
+        onSelectWikiDevops={() => setView('wiki-devops')}
+      />
+    )
+  }
+
+  if (view === 'wiki-ai200') {
+    return (
+      <WikiView
+        content={wikiContent}
+        domainColors={DOMAIN_COLORS}
+        title="Wiki AI-200"
+        introContent={introContent}
+        onBack={() => setView('home')}
+      />
+    )
+  }
+
+  if (view === 'wiki-devops') {
+    return (
+      <WikiView
+        content={devopsWikiContent}
+        domainColors={DEVOPS_DOMAIN_COLORS}
+        title="Wiki Azure DevOps Esenciales"
+        introContent={devopsIntroContent}
+        onBack={() => setView('home')}
+      />
+    )
+  }
+
   if (state.screen === 'start') {
-    return <StartScreen onStart={startExam} />
+    return <StartScreen onStart={startExam} onBack={() => setView('home')} />
   }
 
   if (state.screen === 'results') {

@@ -1,0 +1,981 @@
+<title>Wiki AI-200</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#f5f7f9;
+    --surface:#ffffff;
+    --surface-2:#eaeff3;
+    --border:#dbe2e8;
+    --text:#182430;
+    --text-dim:#5b6b78;
+    --accent:#1f6f8b;
+    --accent-ink:#134a5c;
+    --callout-bg:#fdf3df;
+    --callout-border:#dfa53a;
+    --callout-text:#5c4315;
+    --code-bg:#eef1f4;
+    --shadow:0 8px 24px -12px rgba(20,35,45,.18);
+
+    --d-computo:#0f7a5f;
+    --d-modelos:#6a4fc4;
+    --d-rag:#2861a0;
+    --d-mensajeria:#b56a17;
+    --d-seguridad:#a52f4e;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f161d;
+      --surface:#161f28;
+      --surface-2:#1b2530;
+      --border:#2a3945;
+      --text:#e7edf2;
+      --text-dim:#94a6b4;
+      --accent:#5eb8d6;
+      --accent-ink:#a7dcec;
+      --callout-bg:#3a2c11;
+      --callout-border:#8a651f;
+      --callout-text:#f0d8a3;
+      --code-bg:#1f2a34;
+      --shadow:0 8px 28px -12px rgba(0,0,0,.55);
+
+      --d-computo:#33c99e;
+      --d-modelos:#a993ec;
+      --d-rag:#6fa9e0;
+      --d-mensajeria:#e4a244;
+      --d-seguridad:#e07691;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f161d;
+    --surface:#161f28;
+    --surface-2:#1b2530;
+    --border:#2a3945;
+    --text:#e7edf2;
+    --text-dim:#94a6b4;
+    --accent:#5eb8d6;
+    --accent-ink:#a7dcec;
+    --callout-bg:#3a2c11;
+    --callout-border:#8a651f;
+    --callout-text:#f0d8a3;
+    --code-bg:#1f2a34;
+    --shadow:0 8px 28px -12px rgba(0,0,0,.55);
+
+    --d-computo:#33c99e;
+    --d-modelos:#a993ec;
+    --d-rag:#6fa9e0;
+    --d-mensajeria:#e4a244;
+    --d-seguridad:#e07691;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2{font-family:"Fraunces",Georgia,serif;text-wrap:balance;color:var(--text);margin:0;}
+  code, .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;}
+  a{color:inherit;}
+  p{margin:0 0 .9em;}
+  p:last-child{margin-bottom:0;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;height:64px;z-index:40;
+    display:flex;align-items:center;gap:14px;
+    padding:0 18px;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-toggle{
+    display:none;
+    width:38px;height:38px;border-radius:8px;border:1px solid var(--border);
+    background:var(--surface-2);color:var(--text);
+    align-items:center;justify-content:center;cursor:pointer;flex:none;
+  }
+  .nav-toggle svg{width:18px;height:18px;}
+  .brand{display:flex;flex-direction:column;line-height:1.15;flex:none;}
+  .brand .name{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;letter-spacing:.2px;}
+  .brand .tagline{font-size:.72rem;color:var(--text-dim);font-weight:500;letter-spacing:.02em;}
+  .search-wrap{
+    margin-left:auto;position:relative;width:min(420px,42vw);
+  }
+  .search-wrap input{
+    width:100%;padding:9px 14px 9px 36px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--text);
+    font-size:.9rem;font-family:inherit;outline:none;
+  }
+  .search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);}
+  .search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text-dim);pointer-events:none;}
+  .search-hint{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.68rem;color:var(--text-dim);
+    background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px;}
+
+  /* ---------- Shell ---------- */
+  .shell{display:flex;margin-top:64px;min-height:calc(100vh - 64px);}
+  .backdrop{display:none;position:fixed;inset:64px 0 0 0;background:rgba(10,16,22,.45);z-index:29;}
+  .backdrop.show{display:block;}
+
+  .sidebar{
+    width:280px;flex:none;
+    position:fixed;top:64px;bottom:0;left:0;z-index:30;
+    background:var(--surface-2);border-right:1px solid var(--border);
+    overflow-y:auto;padding:16px 0 40px;
+    transition:transform .22s ease;
+  }
+  .sidebar-nav{display:flex;flex-direction:column;gap:18px;padding:0 14px;}
+  .nav-group{display:flex;flex-direction:column;gap:2px;}
+  .nav-group-title{
+    font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--group-color,var(--text-dim));margin:0 0 4px 10px;
+  }
+  .nav-group.domain-computo{--group-color:var(--d-computo);}
+  .nav-group.domain-modelos{--group-color:var(--d-modelos);}
+  .nav-group.domain-rag{--group-color:var(--d-rag);}
+  .nav-group.domain-mensajeria{--group-color:var(--d-mensajeria);}
+  .nav-group.domain-seguridad{--group-color:var(--d-seguridad);}
+
+  .nav-link{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:8px;text-decoration:none;
+    font-size:.86rem;font-weight:500;color:var(--text);
+    border-left:3px solid transparent;
+  }
+  .nav-link:hover{background:var(--surface);}
+  .nav-link.active{background:var(--surface);border-left-color:var(--group-color,var(--accent));font-weight:700;}
+  .nav-badge{
+    flex:none;width:22px;height:22px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"JetBrains Mono",monospace;font-size:.66rem;font-weight:600;
+    background:color-mix(in srgb, var(--group-color,var(--accent)) 16%, transparent);
+    color:var(--group-color,var(--accent));
+  }
+  .nav-empty{font-size:.78rem;color:var(--text-dim);padding:6px 10px;display:none;}
+
+  /* ---------- Main ---------- */
+  .main{margin-left:280px;flex:1;min-width:0;padding:36px 28px 90px;}
+  .content{max-width:740px;margin:0 auto;}
+  .article{display:none;}
+  .article.visible{display:block;animation:fade .18s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--d,var(--accent));
+    display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  }
+  .eyebrow .num{
+    width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;
+    background:color-mix(in srgb, var(--d,var(--accent)) 18%, transparent);
+    font-size:.68rem;
+  }
+  .article h1{font-size:1.9rem;font-weight:600;border-bottom:3px solid var(--d,var(--accent));padding-bottom:14px;margin-bottom:20px;}
+
+  .mini-toc{
+    display:flex;flex-wrap:wrap;gap:8px 10px;
+    padding:12px 14px;margin:0 0 28px;border-radius:10px;
+    background:var(--surface);border:1px solid var(--border);
+  }
+  .mini-toc span{font-size:.7rem;color:var(--text-dim);font-weight:600;text-transform:uppercase;letter-spacing:.04em;align-self:center;}
+  .mini-toc a{font-size:.82rem;text-decoration:none;color:var(--d,var(--accent));font-weight:600;padding:3px 9px;border-radius:20px;background:color-mix(in srgb, var(--d,var(--accent)) 12%, transparent);}
+  .mini-toc a:hover{background:color-mix(in srgb, var(--d,var(--accent)) 22%, transparent);}
+
+  .section{margin-bottom:26px;scroll-margin-top:84px;}
+  .section h2{font-size:1.05rem;font-weight:600;margin-bottom:8px;}
+  .section p{color:var(--text);}
+
+  .callout{
+    background:var(--callout-bg);border:1px solid var(--callout-border);
+    border-left:4px solid var(--callout-border);border-radius:8px;
+    padding:14px 16px;color:var(--callout-text);
+  }
+  .callout .tag{
+    display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.64rem;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;background:var(--callout-border);color:var(--surface);
+    padding:2px 8px;border-radius:5px;margin-bottom:8px;
+  }
+  .callout code{background:var(--code-bg);color:var(--text);padding:1px 5px;border-radius:4px;font-size:.86em;}
+  .callout p{color:var(--callout-text);}
+
+  .diagram-box{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:18px;box-shadow:var(--shadow);overflow-x:auto;
+  }
+  .diagram-caption{margin-top:14px;font-size:.88rem;color:var(--text-dim);border-top:1px dashed var(--border);padding-top:12px;}
+
+  /* ---------- Intro ---------- */
+  .intro-lead{font-size:1.05rem;color:var(--text-dim);max-width:60ch;}
+  .domain-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:22px;}
+  .domain-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:16px;border-top:3px solid var(--dc,var(--accent));
+  }
+  .domain-card h3{margin:0 0 10px;font-size:.95rem;font-family:"Fraunces",serif;color:var(--dc,var(--accent));}
+  .domain-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+  .domain-card li{display:flex;align-items:center;gap:8px;font-size:.86rem;}
+  .domain-card input[type="checkbox"]{accent-color:var(--dc,var(--accent));width:15px;height:15px;flex:none;}
+  .domain-card a{text-decoration:none;color:var(--text);}
+  .domain-card a:hover{color:var(--dc,var(--accent));}
+
+  /* ---------- Banco de preguntas ---------- */
+  .qa{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;
+    margin-bottom:10px;overflow:hidden;
+  }
+  .qa summary{
+    padding:13px 16px;cursor:pointer;font-weight:600;font-size:.94rem;
+    list-style:none;display:flex;gap:10px;align-items:baseline;
+  }
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary .qn{font-family:"JetBrains Mono",monospace;color:var(--accent);flex:none;font-weight:700;}
+  .qa summary::after{content:"+";margin-left:auto;color:var(--text-dim);font-weight:400;}
+  .qa[open] summary::after{content:"–";}
+  .qa-body{padding:0 16px 16px;}
+  .qa-options{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:6px;}
+  .qa-options li{
+    font-size:.88rem;padding:8px 11px;border-radius:7px;background:var(--surface-2);
+    border:1px solid var(--border);
+  }
+  .qa-options b{font-family:"JetBrains Mono",monospace;color:var(--accent-ink);margin-right:6px;}
+  .qa-answer{
+    border:0;background:none;padding:0;
+  }
+  .qa-answer summary{
+    padding:8px 11px;font-size:.82rem;font-weight:600;color:var(--accent);
+    background:color-mix(in srgb, var(--accent) 12%, transparent);border-radius:7px;
+    display:inline-flex;
+  }
+  .qa-answer summary::after{content:"";}
+  .qa-answer .qa-answer-body{
+    margin-top:8px;padding:11px 13px;border-radius:7px;
+    background:var(--callout-bg);border:1px solid var(--callout-border);color:var(--callout-text);
+    font-size:.88rem;
+  }
+  .qa-answer .qa-answer-body b{font-family:"JetBrains Mono",monospace;}
+
+  /* ---------- Diagram Mermaid theme text ---------- */
+  pre.mermaid{background:transparent;margin:0;font-size:14px;}
+
+  ::selection{background:color-mix(in srgb, var(--accent) 35%, transparent);}
+
+  @media (max-width:880px){
+    .nav-toggle{display:flex;}
+    .search-wrap{width:min(240px,50vw);}
+    .sidebar{transform:translateX(-100%);box-shadow:var(--shadow);}
+    .sidebar.open{transform:translateX(0);}
+    .main{margin-left:0;padding:28px 16px 80px;}
+    .brand .tagline{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .article.visible{animation:none;}
+    .sidebar{transition:none;}
+  }
+</style>
+
+<header class="site-header">
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir navegación" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="brand">
+    <span class="name">Wiki AI-200</span>
+    <span class="tagline">Azure AI Cloud Developer Associate</span>
+  </div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchInput" type="search" placeholder="Buscar en la wiki…" autocomplete="off">
+    <span class="search-hint" id="searchHint" hidden>0</span>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav" id="sidebarNav">
+
+      <div class="nav-group">
+        <a class="nav-link active" href="#intro" data-target="intro" data-search="introduccion material de estudio ai-200 azure ai cloud developer associate checklist repaso">
+          <span class="nav-badge">i</span> Introducción
+        </a>
+      </div>
+
+      <div class="nav-group domain-computo">
+        <p class="nav-group-title">Cómputo &amp; Contenedores</p>
+        <a class="nav-link" href="#svc01" data-target="svc01" data-search="azure container apps aca entorno serverless administrado kubernetes microservicios apis inferencia keda scale to zero canary blue green revisiones">
+          <span class="nav-badge">01</span> Azure Container Apps
+        </a>
+        <a class="nav-link" href="#svc02" data-target="svc02" data-search="azure durable functions orquestar flujos con estado function chaining fan-out fan-in human in the loop async http api 202 accepted polling">
+          <span class="nav-badge">02</span> Durable Functions
+        </a>
+        <a class="nav-link" href="#svc03" data-target="svc03" data-search="azure container registry acr registro privado imagenes docker oci acr tasks managed identity">
+          <span class="nav-badge">03</span> Container Registry
+        </a>
+      </div>
+
+      <div class="nav-group domain-modelos">
+        <p class="nav-group-title">Modelos e IA</p>
+        <a class="nav-link" href="#svc04" data-target="svc04" data-search="microsoft foundry azure ai studio catalogo de modelos openai llama phi mistral evaluacion orquestacion multi-agente groundedness relevance coherence">
+          <span class="nav-badge">04</span> Microsoft Foundry
+        </a>
+        <a class="nav-link" href="#svc05" data-target="svc05" data-search="azure openai service standard ptu provisioned throughput units 429 rate limit backoff exponencial jitter structured outputs json schema">
+          <span class="nav-badge">05</span> Azure OpenAI Service
+        </a>
+        <a class="nav-link" href="#svc06" data-target="svc06" data-search="azure ai content safety moderacion prompt shield user prompt attacks document attacks inyeccion indirecta rag">
+          <span class="nav-badge">06</span> AI Content Safety
+        </a>
+      </div>
+
+      <div class="nav-group domain-rag">
+        <p class="nav-group-title">RAG &amp; Vectores</p>
+        <a class="nav-link" href="#svc07" data-target="svc07" data-search="azure ai search retrieval rag hybrid search bm25 semantic ranker hnsw knn exhaustivo vectores">
+          <span class="nav-badge">07</span> Azure AI Search
+        </a>
+        <a class="nav-link" href="#svc08" data-target="svc08" data-search="azure cosmos db nosql baja latencia vectores change feed historial conversacion memoria">
+          <span class="nav-badge">08</span> Azure Cosmos DB
+        </a>
+        <a class="nav-link" href="#svc09" data-target="svc09" data-search="azure blob storage almacenamiento objetos hot cool cold archive tiers lifecycle management rehidratacion">
+          <span class="nav-badge">09</span> Blob Storage
+        </a>
+      </div>
+
+      <div class="nav-group domain-mensajeria">
+        <p class="nav-group-title">Mensajería</p>
+        <a class="nav-link" href="#svc10" data-target="svc10" data-search="event grid service bus mensajeria reactividad sin garantia de orden dead-letter queue sessions fifo sessionid">
+          <span class="nav-badge">10</span> Event Grid vs Service Bus
+        </a>
+      </div>
+
+      <div class="nav-group domain-seguridad">
+        <p class="nav-group-title">Seguridad &amp; Monitoreo</p>
+        <a class="nav-link" href="#svc11" data-target="svc11" data-search="managed identities rbac autenticarse sin contraseñas system-assigned user-assigned entra id token">
+          <span class="nav-badge">11</span> Managed Identities
+        </a>
+        <a class="nav-link" href="#svc12" data-target="svc12" data-search="azure key vault boveda secretos llaves api keys rotacion rbac key vault secrets user">
+          <span class="nav-badge">12</span> Key Vault
+        </a>
+        <a class="nav-link" href="#svc13" data-target="svc13" data-search="application insights azure monitor telemetria distributed tracing w3c trace context kql requests exceptions dependencies">
+          <span class="nav-badge">13</span> App Insights / Monitor
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <a class="nav-link" href="#banco" data-target="banco" data-search="banco de preguntas practica examen opcion multiple casos de estudio 429 backoff prompt shield keda ptu structured outputs hnsw change feed lifecycle event grid service bus sessions dead-letter managed identity groundedness distributed tracing acr tasks">
+          <span class="nav-badge">?</span> Banco de Preguntas
+        </a>
+      </div>
+
+    </nav>
+    <p class="nav-empty" id="navEmpty">Sin resultados para tu búsqueda.</p>
+  </aside>
+
+  <main class="main">
+    <div class="content">
+
+      <!-- ===================== INTRODUCCIÓN ===================== -->
+      <article class="article visible" id="intro">
+        <p class="eyebrow"><span class="num">i</span> Guía de estudio</p>
+        <h1>AI-200 — Material de estudio</h1>
+        <p class="intro-lead">Esta wiki es material de estudio para el examen <strong>AI-200 (Azure AI Cloud Developer Associate)</strong>: un resumen por servicio — qué es, para qué sirve, cuándo usarlo y el dato clave que suelen preguntar — más un banco de preguntas de práctica. Recorré cada servicio en orden o andá directo al que te falte repasar, y usá el banco de preguntas para autoevaluarte al final.</p>
+
+        <div class="domain-map">
+          <div class="domain-card" style="--dc:var(--d-computo)">
+            <h3>Cómputo &amp; Contenedores</h3>
+            <ul>
+              <li><input type="checkbox"> <a href="#svc01" data-target="svc01">01 · Azure Container Apps</a></li>
+              <li><input type="checkbox"> <a href="#svc02" data-target="svc02">02 · Durable Functions</a></li>
+              <li><input type="checkbox"> <a href="#svc03" data-target="svc03">03 · Container Registry</a></li>
+            </ul>
+          </div>
+          <div class="domain-card" style="--dc:var(--d-modelos)">
+            <h3>Modelos e IA</h3>
+            <ul>
+              <li><input type="checkbox"> <a href="#svc04" data-target="svc04">04 · Microsoft Foundry</a></li>
+              <li><input type="checkbox"> <a href="#svc05" data-target="svc05">05 · Azure OpenAI Service</a></li>
+              <li><input type="checkbox"> <a href="#svc06" data-target="svc06">06 · AI Content Safety</a></li>
+            </ul>
+          </div>
+          <div class="domain-card" style="--dc:var(--d-rag)">
+            <h3>RAG &amp; Vectores</h3>
+            <ul>
+              <li><input type="checkbox"> <a href="#svc07" data-target="svc07">07 · Azure AI Search</a></li>
+              <li><input type="checkbox"> <a href="#svc08" data-target="svc08">08 · Azure Cosmos DB</a></li>
+              <li><input type="checkbox"> <a href="#svc09" data-target="svc09">09 · Blob Storage</a></li>
+            </ul>
+          </div>
+          <div class="domain-card" style="--dc:var(--d-mensajeria)">
+            <h3>Mensajería</h3>
+            <ul>
+              <li><input type="checkbox"> <a href="#svc10" data-target="svc10">10 · Event Grid vs Service Bus</a></li>
+            </ul>
+          </div>
+          <div class="domain-card" style="--dc:var(--d-seguridad)">
+            <h3>Seguridad &amp; Monitoreo</h3>
+            <ul>
+              <li><input type="checkbox"> <a href="#svc11" data-target="svc11">11 · Managed Identities</a></li>
+              <li><input type="checkbox"> <a href="#svc12" data-target="svc12">12 · Key Vault</a></li>
+              <li><input type="checkbox"> <a href="#svc13" data-target="svc13">13 · App Insights / Monitor</a></li>
+            </ul>
+          </div>
+          <div class="domain-card" style="--dc:var(--accent)">
+            <h3>Autoevaluación</h3>
+            <ul>
+              <li><input type="checkbox"> <a href="#banco" data-target="banco">Banco de preguntas (21 ítems)</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================== 01 ACA ===================== -->
+      <article class="article" id="svc01" style="--d:var(--d-computo)">
+        <p class="eyebrow"><span class="num">01</span> Cómputo &amp; Contenedores</p>
+        <h1>Azure Container Apps (ACA)</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc01-1">Qué es</a><a href="#svc01-2">Para qué sirve</a><a href="#svc01-3">Cuándo usarlo</a><a href="#svc01-4">Dato clave</a><a href="#svc01-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc01-1"><h2>Qué es</h2><p>Entorno serverless administrado sobre Kubernetes para microservicios y APIs de inferencia.</p></section>
+        <section class="section" id="svc01-2"><h2>Para qué sirve</h2><p>Correr contenedores sin gestionar el clúster de K8s vos mismo.</p></section>
+        <section class="section" id="svc01-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Worker que procesa mensajes de una cola (transcripción, embeddings) y debe escalar a 0 cuando no hay trabajo.</p></section>
+        <section class="section" id="svc01-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p>Escala con <b>KEDA</b> según métricas externas (longitud de cola, HTTP, CPU); soporta <b>scale-to-zero</b> y despliegues <b>Canary/Blue-Green</b> por revisiones.</p></div>
+        </section>
+        <section class="section" id="svc01-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    Q[(Cola de mensajes)] -->|longitud de cola| K[KEDA scaler]
+    K -->|escala 0 a N réplicas| CA[Azure Container App\nworker]
+    CA -->|procesa mensaje| Q
+    CA -->|sin trabajo pendiente| Z[Scale to zero]
+    ACR[(Azure Container Registry)] -->|imagen del contenedor| CA</pre>
+          <p class="diagram-caption">KEDA observa la longitud de la cola y decide cuántas réplicas del Container App levantar, incluyendo bajar a cero cuando no hay mensajes. La imagen que corre sale de Azure Container Registry.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 02 Durable Functions ===================== -->
+      <article class="article" id="svc02" style="--d:var(--d-computo)">
+        <p class="eyebrow"><span class="num">02</span> Cómputo &amp; Contenedores</p>
+        <h1>Azure Durable Functions</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc02-1">Qué es</a><a href="#svc02-2">Para qué sirve</a><a href="#svc02-3">Cuándo usarlo</a><a href="#svc02-4">Dato clave</a><a href="#svc02-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc02-1"><h2>Qué es</h2><p>Extensión de Azure Functions para orquestar flujos con estado.</p></section>
+        <section class="section" id="svc02-2"><h2>Para qué sirve</h2><p>Encadenar pasos de IA (transcribir → traducir → resumir) sin perder el progreso si algo falla.</p></section>
+        <section class="section" id="svc02-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Una tarea de IA tarda minutos (ej. transcribir un audio de 45 min) y la llamada HTTP no puede quedar colgada.</p></section>
+        <section class="section" id="svc02-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p>Patrón <b>Async HTTP API</b> devuelve <code>202 Accepted</code> + URL de polling; <b>Fan-out/Fan-in</b> procesa fragmentos en paralelo y consolida; <b>Human-in-the-loop</b> pausa el flujo esperando aprobación humana.</p></div>
+        </section>
+        <section class="section" id="svc02-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">sequenceDiagram
+    participant Cliente
+    participant HTTP as Trigger HTTP
+    participant Orq as Orchestrator
+    Cliente->>HTTP: POST /transcribir (audio largo)
+    HTTP->>Orq: inicia orquestación
+    HTTP-->>Cliente: 202 Accepted + URL de status
+    loop Polling
+        Cliente->>HTTP: GET /status
+        HTTP-->>Cliente: "Running"
+    end
+    Orq->>Orq: transcribe → traduce → resume (Function Chaining)
+    Cliente->>HTTP: GET /status
+    HTTP-->>Cliente: 200 OK + resultado final</pre>
+          <p class="diagram-caption">La llamada HTTP nunca queda colgada esperando: responde al instante con un <code>202</code> y una URL de consulta. El cliente pregunta ("polling") hasta que el flujo largo termina. Ideal para tareas de IA que tardan minutos.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 03 ACR ===================== -->
+      <article class="article" id="svc03" style="--d:var(--d-computo)">
+        <p class="eyebrow"><span class="num">03</span> Cómputo &amp; Contenedores</p>
+        <h1>Azure Container Registry (ACR)</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc03-1">Qué es</a><a href="#svc03-2">Para qué sirve</a><a href="#svc03-3">Cuándo usarlo</a><a href="#svc03-4">Dato clave</a><a href="#svc03-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc03-1"><h2>Qué es</h2><p>Registro privado de imágenes Docker/OCI.</p></section>
+        <section class="section" id="svc03-2"><h2>Para qué sirve</h2><p>Guardar y versionar las imágenes que corren en ACA/AKS.</p></section>
+        <section class="section" id="svc03-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Necesitás compilar la imagen automáticamente al hacer commit.</p></section>
+        <section class="section" id="svc03-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>ACR Tasks</b> compila en Azure sin Docker local; autenticación sin contraseña vía Managed Identity.</p></div>
+        </section>
+        <section class="section" id="svc03-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    Dev[Commit del equipo] --> Task[ACR Tasks]
+    Task -->|compila la imagen en Azure| Img[(Imagen versionada en ACR)]
+    MI[Managed Identity] -->|autenticación sin password| Img
+    Img -->|pull de la imagen| CA[Azure Container App / AKS]</pre>
+          <p class="diagram-caption">El commit dispara ACR Tasks, que compila la imagen dentro de Azure (sin Docker local) y la deja versionada en el registro. El contenedor que la consume se autentica con Managed Identity, sin contraseñas.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 04 Foundry ===================== -->
+      <article class="article" id="svc04" style="--d:var(--d-modelos)">
+        <p class="eyebrow"><span class="num">04</span> Modelos e IA</p>
+        <h1>Microsoft Foundry / Azure AI Studio</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc04-1">Qué es</a><a href="#svc04-2">Para qué sirve</a><a href="#svc04-3">Cuándo usarlo</a><a href="#svc04-4">Dato clave</a><a href="#svc04-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc04-1"><h2>Qué es</h2><p>Plataforma unificada para construir, desplegar y orquestar modelos y agentes de IA.</p></section>
+        <section class="section" id="svc04-2"><h2>Para qué sirve</h2><p>Catálogo de modelos (OpenAI, Llama, Phi, Mistral), evaluación y orquestación multi-agente.</p></section>
+        <section class="section" id="svc04-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Necesitás comparar/cambiar de modelo sin reescribir la app, o encadenar varios agentes.</p></section>
+        <section class="section" id="svc04-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p>Métricas de evaluación: <b>Groundedness</b> (¿se basa en el contexto real?), <b>Relevance</b> (¿responde la pregunta?), <b>Coherence</b> (¿fluye bien el texto?).</p></div>
+        </section>
+        <section class="section" id="svc04-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    U[Usuario] --> E[App / Agente]
+    E -->|pregunta| D[(Azure AI Search)]
+    D -->|fragmentos de contexto| E
+    E -->|prompt + contexto| MF{Microsoft Foundry\nModel Catalog}
+    MF -->|enruta a| M1[Azure OpenAI]
+    MF -->|o a| M2[Llama / Phi / Mistral]
+    M1 --> Ev[Evaluación:\nGroundedness / Relevance / Coherence]
+    M2 --> Ev
+    Ev --> E
+    E --> U</pre>
+          <p class="diagram-caption">Foundry es la capa que decide a qué modelo del catálogo enrutar el prompt (sin reescribir la app si cambiás de modelo) y después evalúa la respuesta con métricas de Groundedness, Relevance y Coherence antes de devolverla.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 05 Azure OpenAI ===================== -->
+      <article class="article" id="svc05" style="--d:var(--d-modelos)">
+        <p class="eyebrow"><span class="num">05</span> Modelos e IA</p>
+        <h1>Azure OpenAI Service</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc05-1">Qué es</a><a href="#svc05-2">Para qué sirve</a><a href="#svc05-3">Cuándo usarlo</a><a href="#svc05-4">Dato clave</a><a href="#svc05-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc05-1"><h2>Qué es</h2><p>Los modelos de OpenAI desplegados dentro de Azure.</p></section>
+        <section class="section" id="svc05-2"><h2>Para qué sirve</h2><p>Inferencia de LLMs con la seguridad y red de Azure.</p></section>
+        <section class="section" id="svc05-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Tráfico variable → <b>Standard</b> (pago por token); tráfico crítico con latencia predecible → <b>PTU</b> (Provisioned Throughput Units, capacidad reservada).</p></section>
+        <section class="section" id="svc05-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p>Ante <code>HTTP 429</code> (rate limit) la solución de código es <b>reintentos con backoff exponencial + jitter</b>; para forzar formato exacto usar <b>Structured Outputs</b> (<code>json_schema</code>).</p></div>
+        </section>
+        <section class="section" id="svc05-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    A[Documento fuente] --> B[Skillset: OCR + split + embeddings]
+    B --> C[Indexer]
+    C --> D[(Azure AI Search)]
+    U[Usuario] --> E[App / API]
+    E -->|pregunta| D
+    D -->|fragmentos relevantes| E
+    E -->|contexto + pregunta| F{Azure OpenAI}
+    F -->|tráfico variable| S[Standard\npago por token]
+    F -->|tráfico crítico/predecible| P[PTU\ncapacidad reservada]
+    F -->|respuesta fundamentada| E
+    E --> U</pre>
+          <p class="diagram-caption">Azure OpenAI recibe el contexto recuperado por AI Search más la pregunta del usuario y genera la respuesta. La elección entre Standard y PTU depende del patrón de tráfico; un <code>429</code> en Standard se maneja con reintentos y backoff exponencial, no cambiando de plan automáticamente.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 06 Content Safety ===================== -->
+      <article class="article" id="svc06" style="--d:var(--d-modelos)">
+        <p class="eyebrow"><span class="num">06</span> Modelos e IA</p>
+        <h1>Azure AI Content Safety</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc06-1">Qué es</a><a href="#svc06-2">Para qué sirve</a><a href="#svc06-3">Cuándo usarlo</a><a href="#svc06-4">Dato clave</a><a href="#svc06-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc06-1"><h2>Qué es</h2><p>Servicio de moderación y protección de prompts.</p></section>
+        <section class="section" id="svc06-2"><h2>Para qué sirve</h2><p>Filtrar contenido dañino y bloquear ataques al modelo.</p></section>
+        <section class="section" id="svc06-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Un chat expuesto a usuarios externos que podría recibir inyección de prompts.</p></section>
+        <section class="section" id="svc06-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>Prompt Shield</b> cubre <b>User Prompt Attacks</b> (inyección directa) y <b>Document Attacks</b> (instrucciones maliciosas ocultas en un PDF que el RAG procesa).</p></div>
+        </section>
+        <section class="section" id="svc06-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    U[Usuario] -->|prompt| PS{Prompt Shield}
+    Doc[Documento del RAG] -->|contenido a procesar| PS
+    PS -->|User Prompt Attack detectado| Block1[Bloquear]
+    PS -->|Document Attack detectado| Block2[Bloquear]
+    PS -->|contenido limpio| LLM[Azure OpenAI]
+    LLM --> U</pre>
+          <p class="diagram-caption">Prompt Shield inspecciona tanto lo que escribe el usuario (User Prompt Attack) como el contenido de documentos que el RAG le pasa al modelo (Document Attack, inyección indirecta). Si detecta un ataque, bloquea antes de que llegue al LLM.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 07 AI Search ===================== -->
+      <article class="article" id="svc07" style="--d:var(--d-rag)">
+        <p class="eyebrow"><span class="num">07</span> RAG &amp; Vectores</p>
+        <h1>Azure AI Search</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc07-1">Qué es</a><a href="#svc07-2">Para qué sirve</a><a href="#svc07-3">Cuándo usarlo</a><a href="#svc07-4">Dato clave</a><a href="#svc07-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc07-1"><h2>Qué es</h2><p>El motor de búsqueda que arma la "R" de RAG (Retrieval).</p></section>
+        <section class="section" id="svc07-2"><h2>Para qué sirve</h2><p>Encontrar los fragmentos de texto más relevantes para pasarle al LLM como contexto.</p></section>
+        <section class="section" id="svc07-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Siempre que el LLM necesite responder con datos propios de la empresa.</p></section>
+        <section class="section" id="svc07-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>Hybrid Search</b> (vectores + BM25) + <b>Semantic Ranker</b> da la mejor precisión; vectores usan <b>HNSW</b> (aproximado, rápido) o KNN exhaustivo (exacto, más lento).</p></div>
+        </section>
+        <section class="section" id="svc07-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    A[Documento fuente\nPDF / Blob Storage] --> B[Skillset: OCR + split + embeddings]
+    B --> C[Indexer]
+    C --> D[(Azure AI Search\nHybrid + Semantic Ranker)]
+    U[Usuario] --> E[App / API]
+    E -->|pregunta| D
+    D -->|fragmentos relevantes| E
+    E -->|contexto + pregunta| F[Azure OpenAI\nLLM]
+    F -->|respuesta fundamentada| E
+    E --> U</pre>
+          <p class="diagram-caption">El documento se trocea, se convierte en vectores y se indexa una sola vez (ingesta). En cada pregunta del usuario, la app busca los fragmentos más relevantes en AI Search (combinando vectores + BM25 y reordenando con Semantic Ranker) y se los pasa al LLM como contexto — eso es lo que evita que el modelo "invente" (alucine).</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 08 Cosmos DB ===================== -->
+      <article class="article" id="svc08" style="--d:var(--d-rag)">
+        <p class="eyebrow"><span class="num">08</span> RAG &amp; Vectores</p>
+        <h1>Azure Cosmos DB</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc08-1">Qué es</a><a href="#svc08-2">Para qué sirve</a><a href="#svc08-3">Cuándo usarlo</a><a href="#svc08-4">Dato clave</a><a href="#svc08-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc08-1"><h2>Qué es</h2><p>Base NoSQL de baja latencia con soporte de vectores integrado.</p></section>
+        <section class="section" id="svc08-2"><h2>Para qué sirve</h2><p>Guardar el historial de conversación (memoria) y metadatos de usuario.</p></section>
+        <section class="section" id="svc08-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Necesitás persistir sesiones de chat con latencia mínima.</p></section>
+        <section class="section" id="svc08-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>Change Feed</b> dispara una Azure Function cada vez que se inserta/modifica un documento.</p></div>
+        </section>
+        <section class="section" id="svc08-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    U[Usuario] -->|mensaje de chat| App[App]
+    App -->|guarda el turno| CDB[(Cosmos DB)]
+    CDB -->|Change Feed| Fn[Azure Function]
+    Fn -->|procesa el evento\nej. genera resumen| CDB
+    App -->|lee historial| CDB</pre>
+          <p class="diagram-caption">Cada mensaje del chat se persiste en Cosmos DB con latencia mínima. El Change Feed detecta la inserción y dispara automáticamente una Function (por ejemplo, para generar un resumen o actualizar métricas), sin que la app tenga que sondear la base.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 09 Blob Storage ===================== -->
+      <article class="article" id="svc09" style="--d:var(--d-rag)">
+        <p class="eyebrow"><span class="num">09</span> RAG &amp; Vectores</p>
+        <h1>Azure Blob Storage</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc09-1">Qué es</a><a href="#svc09-2">Para qué sirve</a><a href="#svc09-3">Cuándo usarlo</a><a href="#svc09-4">Dato clave</a><a href="#svc09-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc09-1"><h2>Qué es</h2><p>Almacenamiento de objetos (archivos, PDFs, imágenes).</p></section>
+        <section class="section" id="svc09-2"><h2>Para qué sirve</h2><p>Guardar los documentos fuente antes de indexarlos.</p></section>
+        <section class="section" id="svc09-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Archivos que se consultan poco después de un tiempo deberían bajar de tier.</p></section>
+        <section class="section" id="svc09-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p>Tiers <b>Hot → Cool (30+ días) → Cold (90+ días) → Archive</b> (offline, rehidratación en horas); <b>Lifecycle Management</b> los mueve solo.</p></div>
+        </section>
+        <section class="section" id="svc09-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    Up[Documento subido] --> Hot[Tier Hot]
+    Hot -->|30+ días sin acceso| Cool[Tier Cool]
+    Cool -->|90+ días sin acceso| Cold[Tier Cold]
+    Cold -->|Lifecycle Management| Archive[Tier Archive\noffline]
+    Archive -->|rehidratación en horas| Hot</pre>
+          <p class="diagram-caption">Lifecycle Management mueve automáticamente el blob entre tiers según hace cuánto no se accede a él, bajando el costo de almacenamiento. Archive es el más barato pero requiere horas de rehidratación antes de poder leerlo de nuevo.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 10 Event Grid vs Service Bus ===================== -->
+      <article class="article" id="svc10" style="--d:var(--d-mensajeria)">
+        <p class="eyebrow"><span class="num">10</span> Mensajería</p>
+        <h1>Azure Event Grid vs Azure Service Bus</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc10-1">Qué es</a><a href="#svc10-2">Para qué sirve</a><a href="#svc10-3">Cuándo usarlo</a><a href="#svc10-4">Dato clave</a><a href="#svc10-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc10-1"><h2>Qué es</h2><p>Dos sistemas de mensajería con propósitos distintos.</p></section>
+        <section class="section" id="svc10-2"><h2>Para qué sirve</h2><p>Desacoplar servicios.</p></section>
+        <section class="section" id="svc10-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p><b>Event Grid</b> = reactividad ("algo pasó", serverless, sin garantía de orden). <b>Service Bus</b> = procesamiento de mensajes de negocio ("ejecutá esto", con colas/topics, orden garantizado).</p></section>
+        <section class="section" id="svc10-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>Service Bus</b> tiene <b>Dead-Letter Queue</b> (mensajes que fallaron N veces) y <b>Sessions</b> (orden FIFO estricto por <code>SessionId</code>).</p></div>
+        </section>
+        <section class="section" id="svc10-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart TD
+    Q{¿Qué necesito?}
+    Q -->|"Reaccionar a un evento\n(1 a muchos, sin orden garantizado)"| EG[Azure Event Grid]
+    Q -->|"Procesar un mensaje de negocio\n(orden, reintentos, dead-letter)"| SB[Azure Service Bus]
+    EG --> EG1["Ej: se subió un blob → disparar Function"]
+    SB --> SB1["Ej: cola de pedidos con FIFO por SessionId\ny Dead-Letter Queue"]</pre>
+          <p class="diagram-caption"><b>Event Grid</b> es para "algo pasó" (reactivo, serverless, alta escala, sin orden garantizado). <b>Service Bus</b> es para "ejecutá esta orden de negocio" (colas/topics, FIFO con Sessions, Dead-Letter Queue para mensajes que fallaron).</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 11 Managed Identities ===================== -->
+      <article class="article" id="svc11" style="--d:var(--d-seguridad)">
+        <p class="eyebrow"><span class="num">11</span> Seguridad &amp; Monitoreo</p>
+        <h1>Managed Identities</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc11-1">Qué es</a><a href="#svc11-2">Para qué sirve</a><a href="#svc11-3">Cuándo usarlo</a><a href="#svc11-4">Dato clave</a><a href="#svc11-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc11-1"><h2>Qué es</h2><p>Identidad que Azure le da a un recurso para autenticarse sin contraseñas.</p></section>
+        <section class="section" id="svc11-2"><h2>Para qué sirve</h2><p>Que un Container App llame a Key Vault o AI Search sin guardar ningún secreto.</p></section>
+        <section class="section" id="svc11-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Siempre que la política de seguridad prohíba credenciales hardcodeadas.</p></section>
+        <section class="section" id="svc11-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>System-Assigned</b> muere con el recurso; <b>User-Assigned</b> es independiente y se reutiliza entre varios recursos.</p></div>
+        </section>
+        <section class="section" id="svc11-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    CA[Container App] -->|solicita token| Entra[Entra ID]
+    Entra -->|token temporal| CA
+    CA -->|token + rol RBAC| KV[(Key Vault)]
+    CA -->|token + rol RBAC| Search[(Azure AI Search)]</pre>
+          <p class="diagram-caption">El recurso pide un token temporal a Entra ID usando su Managed Identity y lo usa para autenticarse contra Key Vault o AI Search según el rol RBAC asignado — sin que ninguna contraseña o secreto quede guardado en el código.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 12 Key Vault ===================== -->
+      <article class="article" id="svc12" style="--d:var(--d-seguridad)">
+        <p class="eyebrow"><span class="num">12</span> Seguridad &amp; Monitoreo</p>
+        <h1>Azure Key Vault</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc12-1">Qué es</a><a href="#svc12-2">Para qué sirve</a><a href="#svc12-3">Cuándo usarlo</a><a href="#svc12-4">Dato clave</a><a href="#svc12-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc12-1"><h2>Qué es</h2><p>Bóveda segura de secretos y llaves.</p></section>
+        <section class="section" id="svc12-2"><h2>Para qué sirve</h2><p>Guardar API keys externas con rotación.</p></section>
+        <section class="section" id="svc12-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Cualquier secreto que no sea una identidad administrada directa.</p></section>
+        <section class="section" id="svc12-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p>El acceso se da vía rol RBAC (ej. <code>Key Vault Secrets User</code>), no por contraseña maestra.</p></div>
+        </section>
+        <section class="section" id="svc12-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    App[Aplicación] -->|Managed Identity| Entra[Entra ID]
+    Entra -->|valida rol RBAC\nej. Key Vault Secrets User| KV[(Azure Key Vault)]
+    KV -->|entrega el secreto / API key| App
+    Admin[Admin] -->|rota credenciales| KV</pre>
+          <p class="diagram-caption">La app nunca tiene el secreto embebido: pide un token vía Managed Identity, Entra ID valida que tenga el rol RBAC correcto (<code>Key Vault Secrets User</code>) y recién ahí Key Vault entrega el valor. La rotación la maneja el admin sin tocar el código de la app.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== 13 App Insights ===================== -->
+      <article class="article" id="svc13" style="--d:var(--d-seguridad)">
+        <p class="eyebrow"><span class="num">13</span> Seguridad &amp; Monitoreo</p>
+        <h1>Application Insights / Azure Monitor</h1>
+        <nav class="mini-toc"><span>Ir a:</span>
+          <a href="#svc13-1">Qué es</a><a href="#svc13-2">Para qué sirve</a><a href="#svc13-3">Cuándo usarlo</a><a href="#svc13-4">Dato clave</a><a href="#svc13-5">Diagrama</a>
+        </nav>
+        <section class="section" id="svc13-1"><h2>Qué es</h2><p>Telemetría y monitoreo distribuido.</p></section>
+        <section class="section" id="svc13-2"><h2>Para qué sirve</h2><p>Ver latencia, consumo de tokens, tasa de error 429 y trazas entre microservicios.</p></section>
+        <section class="section" id="svc13-3"><h2>Cuándo usarlo (caso típico de examen)</h2><p>Cualquier solución en producción necesita esto desde el día 1.</p></section>
+        <section class="section" id="svc13-4"><h2>Dato clave que suelen preguntar</h2>
+          <div class="callout"><span class="tag">Dato clave</span><p><b>Distributed Tracing</b> usa el header estándar <b>W3C Trace Context</b>; las consultas se hacen en <b>KQL</b> sobre tablas <code>requests</code>, <code>exceptions</code>, <code>dependencies</code>.</p></div>
+        </section>
+        <section class="section" id="svc13-5"><h2>Cómo funciona (diagrama)</h2>
+          <div class="diagram-box"><pre class="mermaid">flowchart LR
+    S1[Microservicio A] -->|traza W3C Trace Context| AI[(Application Insights)]
+    S2[Microservicio B] -->|traza W3C Trace Context| AI
+    S3[Azure OpenAI] -->|tokens, latencia, 429| AI
+    AI -->|tablas requests / exceptions / dependencies| KQL[Consultas KQL]
+    KQL --> Dash[Dashboard / Alertas]</pre>
+          <p class="diagram-caption">Cada microservicio propaga el header W3C Trace Context para que Application Insights pueda unir los spans de una misma request distribuida. Con KQL se consultan las tablas de requests, excepciones y dependencias para armar dashboards y alertas.</p></div>
+        </section>
+      </article>
+
+      <!-- ===================== BANCO DE PREGUNTAS ===================== -->
+      <article class="article" id="banco">
+        <p class="eyebrow" style="--d:var(--accent)"><span class="num">?</span> Autoevaluación</p>
+        <h1>Banco de preguntas de práctica</h1>
+        <p class="intro-lead">Formato examen real: opción múltiple y casos de estudio cortos. Elegí una respuesta y desplegá "Ver respuesta" recién después de decidirte.</p>
+
+        <details class="qa"><summary><span class="qn">01</span> Los usuarios reportan que el RAG a veces omite términos técnicos exactos y otras veces no capta preguntas abstractas. ¿Qué configuración en Azure AI Search mejora la precisión?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Solo vectores con KNN exhaustivo</li><li><b>B</b> Solo texto completo (BM25)</li><li><b>C</b> Híbrida (vectores + texto) con Semantic Ranker</li><li><b>D</b> Solo filtros OData</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>C</b> — Híbrida + Semantic Ranker combina precisión léxica (BM25) con contexto semántico (vectores), y el ranker reordena por relevancia real.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">02</span> Un microservicio en Azure Container Apps consume Azure OpenAI en plan Standard y recibe <code>HTTP 429</code> en horas pico. ¿Qué debe implementar el código?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Cambiar el 429 a 500</li><li><b>B</b> Reintentos con backoff exponencial + jitter</li><li><b>C</b> Eliminar la validación de tokens</li><li><b>D</b> Crear una instancia nueva por request</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — El 429 es límite de cuota (TPM/RPM); el patrón estándar es backoff exponencial con jitter para no saturar el endpoint.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">03</span> Necesitás evitar que un usuario manipule el system prompt del modelo con instrucciones maliciosas. ¿Qué servicio integrás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Azure Key Vault</li><li><b>B</b> Azure AI Content Safety (Prompt Shield)</li><li><b>C</b> Azure Front Door WAF</li><li><b>D</b> Entra Application Proxy</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Prompt Shield está diseñado específicamente para detectar inyección de prompts directa e indirecta.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">04</span> Una app debe transcribir audios de hasta 45 minutos recibidos por HTTP. ¿Qué arquitectura evita que la llamada quede colgada?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Azure App Service síncrono con timeout largo</li><li><b>B</b> Durable Functions con patrón Async HTTP API</li><li><b>C</b> Script en una VM</li><li><b>D</b> Event Grid directo a OpenAI</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Durable Functions con Async HTTP API responde <code>202</code> al instante y deja que el cliente haga polling mientras el flujo largo corre en background.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">05</span> Un contenedor en ACA necesita leer secretos de Key Vault sin guardar ninguna credencial en código ni variables de entorno. ¿Qué configurás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Usuario admin local con password en Base64</li><li><b>B</b> Managed Identity + rol RBAC en Key Vault</li><li><b>C</b> SAS token de 10 años en el Dockerfile</li><li><b>D</b> Abrir el firewall del Key Vault a todo el mundo</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Managed Identity + RBAC elimina toda credencial hardcodeada; el contenedor pide un token temporal a Entra ID.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">06</span> Querés que un worker que procesa mensajes de una cola escale a 0 réplicas cuando no hay tráfico y suba automáticamente cuando llegan mensajes. ¿Qué servicio y mecanismo usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> VM con autoscaling clásico</li><li><b>B</b> Azure Container Apps con regla KEDA sobre la cola</li><li><b>C</b> Azure Functions Consumption sin colas</li><li><b>D</b> AKS con HPA por CPU únicamente</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — KEDA escala Container Apps según la longitud de la cola, incluyendo scale-to-zero.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">07</span> Necesitás encadenar 3 pasos de IA (transcribir → traducir → resumir) garantizando que si falla el paso 2 no se pierda el resultado del paso 1. ¿Qué patrón de Durable Functions aplica?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Fan-out/Fan-in</li><li><b>B</b> Function Chaining</li><li><b>C</b> Human-in-the-loop</li><li><b>D</b> Eternal Orchestrations</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Function Chaining ejecuta pasos secuenciales guardando el estado de cada uno.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">08</span> Tenés un PDF de 500 páginas y querés generar embeddings de cada sección en paralelo y después juntar los resultados. ¿Qué patrón usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Function Chaining</li><li><b>B</b> Fan-out/Fan-in</li><li><b>C</b> Async HTTP API</li><li><b>D</b> Singleton pattern</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Fan-out/Fan-in paraleliza el trabajo y después consolida los resultados.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">09</span> Un flujo de aprobación de crédito generado por un agente de IA debe pausarse hasta que un supervisor humano apruebe. ¿Qué patrón de Durable Functions es?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Fan-out/Fan-in</li><li><b>B</b> Function Chaining</li><li><b>C</b> Human-in-the-loop (external events)</li><li><b>D</b> Async HTTP API</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>C</b> — Human-in-the-loop pausa la orquestación esperando un evento externo (aprobación humana).</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">10</span> Necesitás tráfico de inferencia con latencia predecible y sin compartir cuota con otros clientes de Azure OpenAI. ¿Qué plan de despliegue elegís?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Standard (pay-as-you-go)</li><li><b>B</b> Provisioned Throughput Units (PTU)</li><li><b>C</b> Free tier</li><li><b>D</b> Batch API únicamente</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — PTU da capacidad reservada y dedicada, con latencia predecible; Standard comparte cuota con otros clientes.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">11</span> Querés forzar que la respuesta del modelo cumpla siempre un esquema JSON exacto sin parsear texto libre. ¿Qué característica de Azure OpenAI usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Temperature = 0</li><li><b>B</b> Structured Outputs (json_schema)</li><li><b>C</b> System message más largo</li><li><b>D</b> Function calling sin schema</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Structured Outputs con <code>json_schema</code> garantiza el formato exacto sin depender de que el modelo "se porte bien".</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">12</span> ¿Qué algoritmo de búsqueda vectorial en Azure AI Search es aproximado y más rápido en índices grandes?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> KNN exhaustivo</li><li><b>B</b> HNSW</li><li><b>C</b> BM25</li><li><b>D</b> OData filter</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — HNSW es aproximado (ANN) y escala mejor que el KNN exhaustivo en índices grandes.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">13</span> Necesitás guardar el historial de una conversación de chat con latencia mínima y disparar una Function cada vez que se agrega un mensaje. ¿Qué combinación usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Blob Storage + Timer trigger</li><li><b>B</b> Cosmos DB + Change Feed</li><li><b>C</b> Key Vault + Event Grid</li><li><b>D</b> AI Search + Indexer</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Cosmos DB tiene indexación de vectores integrada y Change Feed dispara eventos ante cambios.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">14</span> Documentos de soporte que casi nadie consulta después de 4 meses, ¿en qué tier de Blob Storage deberían terminar?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Hot</li><li><b>B</b> Cool</li><li><b>C</b> Archive</li><li><b>D</b> Premium</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Cool es para acceso infrecuente pero aún accesible (&gt;30 días); Archive requiere horas de rehidratación, demasiado para "casi nadie consulta".</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">15</span> Necesitás que varios servicios reaccionen quien-sabe-cuántos a "se subió un archivo nuevo" sin necesidad de garantizar orden. ¿Qué servicio de mensajería es el natural?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Azure Service Bus Queue</li><li><b>B</b> Azure Event Grid</li><li><b>C</b> Azure Service Bus Topic con sesiones</li><li><b>D</b> Azure Cosmos DB Change Feed únicamente</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Event Grid es el modelo reactivo 1-a-muchos sin garantía de orden, ideal para "algo pasó".</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">16</span> Necesitás procesar órdenes de pago en estricto orden FIFO por cliente, con reintentos y aislamiento de mensajes fallidos. ¿Qué servicio y característica?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Event Grid con reintentos</li><li><b>B</b> Service Bus con Sessions + Dead-Letter Queue</li><li><b>C</b> Blob Storage con Lifecycle Management</li><li><b>D</b> Cosmos DB con TTL</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Sessions garantiza FIFO por <code>SessionId</code> y Dead-Letter Queue aísla los mensajes que fallaron tras N reintentos.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">17</span> Un pipeline RAG necesita detectar instrucciones maliciosas escondidas dentro de un PDF que el modelo va a leer (no escritas por el usuario en el chat). ¿Qué protección aplica?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Prompt Shield — User Prompt Attacks</li><li><b>B</b> Prompt Shield — Document Attacks (indirect injection)</li><li><b>C</b> Azure Key Vault</li><li><b>D</b> RBAC en AI Search</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Document Attacks cubre instrucciones maliciosas ocultas en contenido que el modelo procesa (no escritas directamente por el usuario).</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">18</span> Cinco Azure Functions distintas necesitan compartir exactamente los mismos permisos hacia Key Vault y AI Search. ¿Qué tipo de Managed Identity conviene?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> System-Assigned en cada una</li><li><b>B</b> User-Assigned compartida entre las 5</li><li><b>C</b> Contraseña compartida en variables de entorno</li><li><b>D</b> Service Principal con secreto manual</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — User-Assigned Managed Identity es un recurso independiente reutilizable entre varios servicios.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">19</span> Querés medir si la respuesta del RAG se basa realmente en los documentos recuperados y no está alucinando. ¿Qué métrica de evaluación de Microsoft Foundry usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Coherence</li><li><b>B</b> Relevance</li><li><b>C</b> Groundedness</li><li><b>D</b> Latency</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>C</b> — Groundedness mide si la respuesta se sostiene en el contexto recuperado (evita alucinaciones); Relevance mide si responde la pregunta, Coherence mide fluidez.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">20</span> Necesitás rastrear una request que atraviesa 4 microservicios distintos para ver dónde se generó la latencia. ¿Qué usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Azure Key Vault logs</li><li><b>B</b> Application Insights con Distributed Tracing (W3C Trace Context)</li><li><b>C</b> Blob Storage access logs</li><li><b>D</b> Event Grid delivery logs</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — Distributed Tracing con el header W3C Trace Context conecta los spans entre microservicios en Application Insights.</div></details></div>
+        </details>
+
+        <details class="qa"><summary><span class="qn">21</span> Un equipo necesita compilar automáticamente la imagen de un contenedor cada vez que hacen commit, sin usar Docker local ni guardar contraseñas de registro. ¿Qué usás?</summary>
+          <div class="qa-body"><ul class="qa-options">
+            <li><b>A</b> Docker Hub manual</li><li><b>B</b> ACR Tasks + Managed Identity</li><li><b>C</b> Subir el .tar por FTP</li><li><b>D</b> Azure Blob Storage como registro</li>
+          </ul><details class="qa-answer"><summary>Ver respuesta</summary><div class="qa-answer-body"><b>B</b> — ACR Tasks compila la imagen dentro de Azure disparado por el commit, sin Docker local; la autenticación es sin contraseña vía Managed Identity.</div></details></div>
+        </details>
+
+      </article>
+
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var sidebar = document.getElementById('sidebar');
+  var backdrop = document.getElementById('backdrop');
+  var toggle = document.getElementById('navToggle');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var articles = Array.prototype.slice.call(document.querySelectorAll('.article'));
+  var main = document.querySelector('.main');
+
+  function closeMobileNav(){
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+    toggle.setAttribute('aria-expanded','false');
+  }
+  toggle.addEventListener('click', function(){
+    var open = sidebar.classList.toggle('open');
+    backdrop.classList.toggle('show', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  backdrop.addEventListener('click', closeMobileNav);
+
+  function showArticle(id){
+    articles.forEach(function(a){ a.classList.toggle('visible', a.id === id); });
+    links.forEach(function(l){ l.classList.toggle('active', l.dataset.target === id); });
+    main.scrollTop = 0;
+    window.scrollTo(0,0);
+  }
+
+  document.querySelectorAll('[data-target]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      var id = el.dataset.target;
+      if(!id) return;
+      e.preventDefault();
+      showArticle(id);
+      closeMobileNav();
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
+  // deep-link on load
+  var initial = location.hash.replace('#','');
+  var validIds = articles.map(function(a){return a.id;});
+  if(initial && validIds.indexOf(initial.split('-')[0]) === -1){
+    // could be a subsection anchor like svc01-3: find its parent article
+    var el = document.getElementById(initial);
+    if(el){
+      var parentArticle = el.closest('.article');
+      if(parentArticle) showArticle(parentArticle.id);
+    }
+  } else if(initial && validIds.indexOf(initial) !== -1){
+    showArticle(initial);
+  }
+
+  // ---- search ----
+  function normalize(s){
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+  var searchInput = document.getElementById('searchInput');
+  var searchHint = document.getElementById('searchHint');
+  var navEmpty = document.getElementById('navEmpty');
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.nav-group'));
+
+  searchInput.addEventListener('input', function(){
+    var q = normalize(searchInput.value.trim());
+    var visibleCount = 0;
+    links.forEach(function(l){
+      var hay = normalize(l.dataset.search || l.textContent);
+      var match = q === '' || hay.indexOf(q) !== -1;
+      l.style.display = match ? '' : 'none';
+      if(match) visibleCount++;
+    });
+    groups.forEach(function(g){
+      var anyVisible = Array.prototype.slice.call(g.querySelectorAll('.nav-link')).some(function(l){return l.style.display !== 'none';});
+      g.style.display = anyVisible ? '' : 'none';
+    });
+    navEmpty.style.display = visibleCount === 0 ? 'block' : 'none';
+    if(q === ''){ searchHint.hidden = true; }
+    else { searchHint.hidden = false; searchHint.textContent = visibleCount; }
+  });
+})();
+</script>

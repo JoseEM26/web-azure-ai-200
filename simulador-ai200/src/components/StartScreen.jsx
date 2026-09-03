@@ -1,9 +1,17 @@
 import { ShieldCheck, Clock, ListChecks, BookOpen } from 'lucide-react'
 
-export default function StartScreen({ onStart }) {
+export default function StartScreen({ onStart, onBack }) {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-2xl w-full bg-card/60 border border-stroke rounded-xl p-8 shadow-lg">
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="text-xs text-slate-400 hover:text-azure-bright transition mb-4"
+          >
+            ← Volver al menú
+          </button>
+        )}
         <div className="flex items-center gap-3 mb-2">
           <ShieldCheck className="text-azure" size={28} />
           <h1 className="font-mono text-sm tracking-widest text-azure-bright uppercase">

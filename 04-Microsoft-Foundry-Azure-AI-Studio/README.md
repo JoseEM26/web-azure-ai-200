@@ -27,3 +27,23 @@ flowchart LR
     E --> U
 ```
 Foundry es la capa que decide a qué modelo del catálogo enrutar el prompt (sin reescribir la app si cambiás de modelo) y después evalúa la respuesta con métricas de Groundedness, Relevance y Coherence antes de devolverla.
+
+## Preguntas Frecuentes
+
+**¿Foundry reemplaza a Azure OpenAI Service?**
+No, lo engloba: Azure OpenAI sigue siendo uno de los proveedores dentro del Model Catalog de Foundry, que además suma modelos open source y capas de evaluación/orquestación.
+
+**¿Qué pasa si un modelo evaluado tiene baja Groundedness?**
+Indica que la respuesta se aleja del contexto recuperado (posible alucinación); en el examen esto se resuelve mejorando el retrieval (AI Search), no cambiando el modelo.
+
+**¿Puedo cambiar de Azure OpenAI a Llama/Phi sin tocar el código de la app?**
+Ese es justamente el punto del Model Catalog: la app llama a un endpoint de Foundry, y el modelo detrás se cambia por configuración.
+
+**¿Foundry orquesta agentes multi-step de forma nativa?**
+Sí, mediante agentes que pueden invocarse entre sí y usar herramientas (function calling, RAG), sin necesitar un framework externo aparte.
+
+**¿Para qué sirve la evaluación automática si ya probé el prompt manualmente?**
+Para detectar regresiones cuando cambiás de modelo o de prompt a escala, corriendo las mismas métricas (Groundedness, Relevance, Coherence) sobre un dataset de test, no solo casos sueltos.
+
+**¿Necesito una AI Search separada si uso Foundry?**
+Sí, Foundry no reemplaza el motor de retrieval; sigue delegando la búsqueda de contexto a Azure AI Search u otro origen de datos configurado.
