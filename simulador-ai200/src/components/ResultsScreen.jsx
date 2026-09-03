@@ -16,7 +16,7 @@ function formatTime(totalSeconds) {
   return `${h}:${m}:${s}`
 }
 
-export default function ResultsScreen({ state, onRetry }) {
+export default function ResultsScreen({ state, onRetry, examId, totalQuestions, passScore = 700 }) {
   const { questions, answers, flagged, result } = state
   const [filter, setFilter] = useState('all')
   const [expandedId, setExpandedId] = useState(null)
@@ -44,7 +44,7 @@ export default function ResultsScreen({ state, onRetry }) {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'resultado-ai200.json'
+    a.download = `resultado-${examId}.json`
     a.click()
     URL.revokeObjectURL(url)
   }
@@ -89,7 +89,7 @@ export default function ResultsScreen({ state, onRetry }) {
               <span className="text-slate-100 font-medium">{formatTime(result.timeUsedSeconds)}</span>
             </span>
             <span>
-              Aprobación mínima: <span className="text-slate-100 font-medium">700</span>
+              Aprobación mínima: <span className="text-slate-100 font-medium">{passScore}</span>
             </span>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function ResultsScreen({ state, onRetry }) {
             onClick={onRetry}
             className="flex items-center gap-2 px-4 py-2 rounded-md bg-azure hover:bg-azure-hover text-white text-sm font-medium transition"
           >
-            <RotateCcw size={16} /> Reintentar examen (50 nuevas preguntas)
+            <RotateCcw size={16} /> Reintentar examen ({totalQuestions} nuevas preguntas)
           </button>
           <button
             onClick={handleExport}

@@ -16,6 +16,7 @@ export default function ExamHeader({
   onToggleFlag,
   isFlagged,
   onFinish,
+  examLabel,
 }) {
   const urgent = remainingSeconds <= 15 * 60
   const critical = remainingSeconds <= 5 * 60
@@ -23,7 +24,7 @@ export default function ExamHeader({
   return (
     <header className="fixed top-0 left-0 right-0 h-16 z-30 bg-canvas/85 backdrop-blur-md border-b border-stroke flex items-center px-4 gap-4">
       <span className="font-mono text-xs text-azure-bright uppercase tracking-widest hidden sm:block">
-        AI-200
+        {examLabel}
       </span>
       <span className="text-sm text-slate-400">
         Pregunta <span className="text-slate-100 font-medium">{current}</span> / {total}

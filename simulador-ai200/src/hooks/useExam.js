@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import questionBank from '../data/questions.json'
 
-const STORAGE_KEY = 'ai200-simulador-v1'
-const TOTAL_QUESTIONS = 50
-const EXAM_SECONDS = 120 * 60
 const PASS_SCORE = 700
 
 function shuffle(array) {
@@ -15,8 +11,8 @@ function shuffle(array) {
   return copy
 }
 
-function buildAttempt() {
-  const picked = shuffle(questionBank).slice(0, TOTAL_QUESTIONS)
+function buildAttempt(questionBank, totalQuestions, examSeconds) {
+  const picked = shuffle(questionBank).slice(0, totalQuestions)
   const questions = picked.map((q) => {
     const order = shuffle(q.options.map((o) => o.id))
     const displayLetters = ['A', 'B', 'C', 'D']
@@ -33,7 +29,7 @@ function buildAttempt() {
     answers: {},
     flagged: [],
     notes: {},
-    remainingSeconds: EXAM_SECONDS,
+    remainingSeconds: examSeconds,
     screen: 'exam',
     startedAt: Date.now(),
     finished: false,
@@ -41,67 +37,72 @@ function buildAttempt() {
   }
 }
 
-function loadSaved() {
+function loadSaved(storageKey) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = localStorage.getItem(storageKey)
     return raw ? JSON.parse(raw) : null
   } catch {
     return null
   }
 }
 
-function save(state) {
+function save(storageKey, state) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+    localStorage.setItem(storageKey, JSON.stringify(state))
   } catch {
     // ponytail: localStorage puede fallar (modo privado, cuota llena); el examen sigue funcionando en memoria.
   }
 }
 
-export function useExam() {
-  const [state, setState] = useState(() => loadSaved() ?? { screen: 'start' })
+export function useExam({ examId, questionBank, totalQuestions, durationMinutes }) {
+  const storageKey = `${examId}-simulador-v1`
+  const examSeconds = durationMinutes * 60
+  const [state, setState] = useState(() => loadSaved(storageKey) ?? { screen: 'start' })
   const tickRef = useRef(null)
 
   useEffect(() => {
     if (state.screen === 'exam' && !state.finished) {
-      save(state)
+      save(storageKey, state)
     }
-  }, [state])
+  }, [state, storageKey])
 
-  const finishExam = useCallback((reason) => {
-    setState((prev) => {
-      if (prev.screen !== 'exam') return prev
-      const timeUsedSeconds = EXAM_SECONDS - prev.remainingSeconds
-      const domainTotals = {}
-      let correctCount = 0
-      prev.questions.forEach((q) => {
-        const chosen = prev.answers[q.id]
-        const isCorrect = chosen === q.correctDisplayId
-        if (isCorrect) correctCount += 1
-        const d = (domainTotals[q.domain] ??= { correct: 0, total: 0 })
-        d.total += 1
-        if (isCorrect) d.correct += 1
+  const finishExam = useCallback(
+    (reason) => {
+      setState((prev) => {
+        if (prev.screen !== 'exam') return prev
+        const timeUsedSeconds = examSeconds - prev.remainingSeconds
+        const domainTotals = {}
+        let correctCount = 0
+        prev.questions.forEach((q) => {
+          const chosen = prev.answers[q.id]
+          const isCorrect = chosen === q.correctDisplayId
+          if (isCorrect) correctCount += 1
+          const d = (domainTotals[q.domain] ??= { correct: 0, total: 0 })
+          d.total += 1
+          if (isCorrect) d.correct += 1
+        })
+        const totalScore = Math.round((correctCount / prev.questions.length) * 1000)
+        const result = {
+          totalScore,
+          passed: totalScore >= PASS_SCORE,
+          correctCount,
+          totalQuestions: prev.questions.length,
+          timeUsedSeconds,
+          autoSubmitted: reason === 'timeout',
+          domainBreakdown: Object.fromEntries(
+            Object.entries(domainTotals).map(([domain, v]) => [
+              domain,
+              { ...v, percent: Math.round((v.correct / v.total) * 100) },
+            ]),
+          ),
+        }
+        const next = { ...prev, screen: 'results', finished: true, result }
+        save(storageKey, next)
+        return next
       })
-      const totalScore = Math.round((correctCount / prev.questions.length) * 1000)
-      const result = {
-        totalScore,
-        passed: totalScore >= PASS_SCORE,
-        correctCount,
-        totalQuestions: prev.questions.length,
-        timeUsedSeconds,
-        autoSubmitted: reason === 'timeout',
-        domainBreakdown: Object.fromEntries(
-          Object.entries(domainTotals).map(([domain, v]) => [
-            domain,
-            { ...v, percent: Math.round((v.correct / v.total) * 100) },
-          ]),
-        ),
-      }
-      const next = { ...prev, screen: 'results', finished: true, result }
-      save(next)
-      return next
-    })
-  }, [])
+    },
+    [examSeconds, storageKey],
+  )
 
   useEffect(() => {
     if (state.screen !== 'exam' || state.finished) return
@@ -125,10 +126,10 @@ export function useExam() {
   }, [state.remainingSeconds, state.screen, state.finished, finishExam])
 
   const startExam = useCallback(() => {
-    const next = buildAttempt()
-    save(next)
+    const next = buildAttempt(questionBank, totalQuestions, examSeconds)
+    save(storageKey, next)
     setState(next)
-  }, [])
+  }, [questionBank, totalQuestions, examSeconds, storageKey])
 
   const answerQuestion = useCallback((questionId, displayId) => {
     setState((prev) => ({ ...prev, answers: { ...prev.answers, [questionId]: displayId } }))
@@ -148,9 +149,9 @@ export function useExam() {
   }, [])
 
   const resetToStart = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(storageKey)
     setState({ screen: 'start' })
-  }, [])
+  }, [storageKey])
 
   return {
     state,
@@ -160,7 +161,7 @@ export function useExam() {
     saveNote,
     finishExam,
     resetToStart,
-    EXAM_SECONDS,
+    EXAM_SECONDS: examSeconds,
     PASS_SCORE,
   }
 }

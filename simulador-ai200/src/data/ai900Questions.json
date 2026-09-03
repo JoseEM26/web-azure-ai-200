@@ -1,0 +1,1842 @@
+[
+  {
+    "id": 1,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Definición de Inteligencia Artificial",
+    "scenario": "Una empresa quiere que un sistema tome decisiones o haga predicciones imitando el razonamiento humano, sin que un humano programe cada regla explícitamente.",
+    "question": "¿Qué concepto describe mejor esta capacidad?",
+    "options": [
+      { "id": "A", "text": "Inteligencia Artificial" },
+      { "id": "B", "text": "Automatización RPA tradicional" },
+      { "id": "C", "text": "Programación por reglas fijas" },
+      { "id": "D", "text": "Virtualización de servidores" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La IA es la capacidad de un sistema de simular comportamiento inteligente humano (razonar, predecir, aprender) sin que un humano codifique cada regla.",
+      "whyIncorrect": {
+        "B": "RPA automatiza tareas repetitivas siguiendo pasos fijos definidos por humanos; no aprende ni razona.",
+        "C": "La programación por reglas fijas no se adapta ni aprende de datos nuevos.",
+        "D": "La virtualización es una técnica de infraestructura, sin relación con el razonamiento o el aprendizaje."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/get-started-ai-fundamentals/"
+  },
+  {
+    "id": 2,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Machine Learning como base de la IA",
+    "scenario": "Un equipo quiere que un sistema mejore sus predicciones de ventas automáticamente a medida que recibe más datos históricos, sin reprogramar el algoritmo.",
+    "question": "¿Qué disciplina de la IA describe este enfoque?",
+    "options": [
+      { "id": "A", "text": "Machine Learning" },
+      { "id": "B", "text": "Visión por computadora" },
+      { "id": "C", "text": "Procesamiento de lenguaje natural" },
+      { "id": "D", "text": "Robótica" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Machine Learning permite que los modelos aprendan patrones de los datos y mejoren su desempeño sin reprogramación manual.",
+      "whyIncorrect": {
+        "B": "La visión por computadora sirve para interpretar imágenes o video, no para predicciones numéricas de ventas por sí sola.",
+        "C": "El NLP se enfoca en texto y lenguaje humano, no en pronósticos numéricos.",
+        "D": "La robótica trata de hardware y control físico, no de aprendizaje a partir de datos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/use-automated-machine-learning/"
+  },
+  {
+    "id": 3,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Visión por computadora - definición",
+    "scenario": "Una app debe identificar automáticamente qué objetos aparecen en fotos subidas por usuarios.",
+    "question": "¿Qué carga de trabajo de IA corresponde a este caso?",
+    "options": [
+      { "id": "A", "text": "Procesamiento de lenguaje natural" },
+      { "id": "B", "text": "Visión por computadora" },
+      { "id": "C", "text": "Conversational AI" },
+      { "id": "D", "text": "Pronóstico de series de tiempo" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "La visión por computadora permite que las máquinas interpreten y comprendan el contenido de imágenes, incluyendo qué objetos hay en ellas.",
+      "whyIncorrect": {
+        "A": "El NLP procesa texto y lenguaje, no imágenes.",
+        "C": "Conversational AI gestiona diálogos, no reconocimiento visual.",
+        "D": "El pronóstico de series de tiempo predice valores numéricos futuros, no analiza imágenes."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview"
+  },
+  {
+    "id": 4,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "NLP - definición",
+    "scenario": "Un sistema debe leer reseñas de clientes y determinar automáticamente si el sentimiento es positivo o negativo.",
+    "question": "¿Qué carga de trabajo de IA es esta?",
+    "options": [
+      { "id": "A", "text": "Visión por computadora" },
+      { "id": "B", "text": "Procesamiento de Lenguaje Natural (NLP)" },
+      { "id": "C", "text": "Detección de anomalías" },
+      { "id": "D", "text": "Machine Learning de clustering" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "El análisis de sentimiento sobre texto es una tarea clásica de procesamiento de lenguaje natural.",
+      "whyIncorrect": {
+        "A": "No hay imágenes involucradas en este escenario.",
+        "C": "La detección de anomalías busca valores atípicos en datos, no sentimiento en texto.",
+        "D": "El clustering agrupa datos sin etiqueta; no analiza el sentimiento de un texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/overview"
+  },
+  {
+    "id": 5,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "IA Generativa - definición",
+    "scenario": "Una empresa quiere un sistema que genere borradores originales de correos y resúmenes de texto a partir de instrucciones en lenguaje natural.",
+    "question": "¿Qué tipo de IA describe este escenario?",
+    "options": [
+      { "id": "A", "text": "IA generativa" },
+      { "id": "B", "text": "Clasificación supervisada" },
+      { "id": "C", "text": "Detección de objetos" },
+      { "id": "D", "text": "Clustering no supervisado" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La IA generativa crea contenido nuevo (texto, imágenes, código) a partir de modelos fundacionales entrenados con grandes cantidades de datos.",
+      "whyIncorrect": {
+        "B": "La clasificación asigna una categoría a una entrada existente; no genera contenido nuevo.",
+        "C": "La detección de objetos ubica objetos en imágenes; no genera texto.",
+        "D": "El clustering agrupa datos similares; no genera contenido nuevo."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/overview"
+  },
+  {
+    "id": 6,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Principio de equidad (Fairness)",
+    "scenario": "Un modelo de aprobación de préstamos otorga tasas de aprobación notablemente distintas entre grupos demográficos con perfiles financieros similares.",
+    "question": "¿Qué principio de IA responsable se está violando?",
+    "options": [
+      { "id": "A", "text": "Confiabilidad y seguridad" },
+      { "id": "B", "text": "Equidad (Fairness)" },
+      { "id": "C", "text": "Transparencia" },
+      { "id": "D", "text": "Privacidad y seguridad" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "La equidad exige que los sistemas de IA traten a todos los grupos de personas de forma justa, sin generar sesgos discriminatorios.",
+      "whyIncorrect": {
+        "A": "Confiabilidad y seguridad se refiere a que el sistema funcione de forma consistente y segura, no a discriminación entre grupos.",
+        "C": "Transparencia trata de que las personas entiendan cómo funciona el sistema, no directamente el sesgo en los resultados.",
+        "D": "Privacidad y seguridad protege datos personales, no la equidad de los resultados."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 7,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Confiabilidad y seguridad",
+    "scenario": "Un sistema de IA que controla un vehículo autónomo debe funcionar de forma consistente incluso en condiciones climáticas adversas, con pruebas rigurosas antes del lanzamiento.",
+    "question": "¿Qué principio de IA responsable prioriza este requisito?",
+    "options": [
+      { "id": "A", "text": "Inclusión" },
+      { "id": "B", "text": "Confiabilidad y seguridad" },
+      { "id": "C", "text": "Rendición de cuentas" },
+      { "id": "D", "text": "Equidad" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Confiabilidad y seguridad exige que los sistemas de IA operen de forma segura y consistente, incluso en escenarios inesperados, especialmente en contextos de alto riesgo.",
+      "whyIncorrect": {
+        "A": "Inclusión busca que la IA beneficie y sea accesible a todas las personas; no se enfoca en la seguridad operativa.",
+        "C": "Rendición de cuentas se refiere a que personas y organizaciones sean responsables del comportamiento del sistema.",
+        "D": "Equidad se enfoca en el trato justo entre grupos, no en la seguridad operativa."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 8,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Privacidad y seguridad",
+    "scenario": "Un sistema de reconocimiento facial almacena imágenes biométricas de usuarios sin cifrado y sin control de acceso definido.",
+    "question": "¿Qué principio de IA responsable está en riesgo?",
+    "options": [
+      { "id": "A", "text": "Privacidad y seguridad" },
+      { "id": "B", "text": "Inclusión" },
+      { "id": "C", "text": "Transparencia" },
+      { "id": "D", "text": "Equidad" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Privacidad y seguridad exige proteger los datos personales y biométricos con controles de acceso, cifrado y cumplimiento normativo.",
+      "whyIncorrect": {
+        "B": "Inclusión se enfoca en accesibilidad y diversidad de usuarios beneficiados, no en protección de datos.",
+        "C": "Transparencia trata sobre la comprensión del funcionamiento del sistema.",
+        "D": "Equidad trata del trato justo entre grupos, no de la protección de datos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 9,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Inclusión",
+    "scenario": "Una empresa diseña un asistente de voz que no reconoce bien acentos regionales ni funciona con lectores de pantalla para personas con discapacidad visual.",
+    "question": "¿Qué principio de IA responsable no se está cumpliendo?",
+    "options": [
+      { "id": "A", "text": "Inclusión" },
+      { "id": "B", "text": "Confiabilidad y seguridad" },
+      { "id": "C", "text": "Rendición de cuentas" },
+      { "id": "D", "text": "Privacidad y seguridad" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La inclusión busca que los sistemas de IA consideren y beneficien a todas las personas, incluyendo distintas capacidades, idiomas y contextos.",
+      "whyIncorrect": {
+        "B": "Confiabilidad y seguridad se refiere a la estabilidad operativa, no a la diversidad de usuarios.",
+        "C": "Rendición de cuentas trata sobre la responsabilidad organizacional del sistema.",
+        "D": "Privacidad y seguridad protege datos, no accesibilidad."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 10,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Transparencia",
+    "scenario": "Los usuarios de un sistema de scoring crediticio con IA no reciben ninguna explicación de por qué fueron rechazados.",
+    "question": "¿Qué principio de IA responsable exige comunicar cómo y por qué el sistema toma sus decisiones?",
+    "options": [
+      { "id": "A", "text": "Transparencia" },
+      { "id": "B", "text": "Inclusión" },
+      { "id": "C", "text": "Confiabilidad y seguridad" },
+      { "id": "D", "text": "Equidad" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Transparencia implica que las personas entiendan las capacidades, limitaciones y el razonamiento detrás de las decisiones de un sistema de IA.",
+      "whyIncorrect": {
+        "B": "Inclusión es sobre accesibilidad y diversidad, no sobre explicabilidad.",
+        "C": "Confiabilidad y seguridad es sobre funcionamiento seguro y consistente.",
+        "D": "Equidad es sobre trato justo entre grupos, no sobre explicación de decisiones."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 11,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Rendición de cuentas (Accountability)",
+    "scenario": "Una organización define claramente qué equipo humano es responsable de supervisar, auditar y corregir el comportamiento de su modelo de IA en producción.",
+    "question": "¿Qué principio de IA responsable se está aplicando?",
+    "options": [
+      { "id": "A", "text": "Rendición de cuentas" },
+      { "id": "B", "text": "Inclusión" },
+      { "id": "C", "text": "Privacidad y seguridad" },
+      { "id": "D", "text": "Equidad" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La rendición de cuentas exige que personas y organizaciones asuman responsabilidad por el diseño, la operación y los resultados de los sistemas de IA.",
+      "whyIncorrect": {
+        "B": "Inclusión se refiere a la accesibilidad para distintos usuarios.",
+        "C": "Privacidad y seguridad protege datos personales.",
+        "D": "Equidad busca trato justo entre grupos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 12,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Supervisión humana (human-in-the-loop)",
+    "scenario": "Un sistema de IA que recomienda tratamientos médicos requiere que un médico revise y apruebe cada recomendación antes de aplicarla al paciente.",
+    "question": "¿Qué práctica de IA responsable ilustra este diseño?",
+    "options": [
+      { "id": "A", "text": "Supervisión humana (human-in-the-loop)" },
+      { "id": "B", "text": "Clustering no supervisado" },
+      { "id": "C", "text": "Automated Machine Learning" },
+      { "id": "D", "text": "Escalado automático de cómputo" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Mantener a un humano en el ciclo de decisión en escenarios de alto riesgo es una práctica clave de confiabilidad y seguridad en IA responsable.",
+      "whyIncorrect": {
+        "B": "El clustering es una técnica de ML no supervisado, no una práctica de supervisión de decisiones.",
+        "C": "AutoML automatiza la selección de modelos, no la supervisión humana.",
+        "D": "El escalado de cómputo es una preocupación de infraestructura, no de gobernanza de IA."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 13,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Relación entre IA y Machine Learning",
+    "scenario": "Un gerente pregunta si Machine Learning e Inteligencia Artificial son sinónimos exactos.",
+    "question": "¿Cuál es la relación correcta entre ambos conceptos?",
+    "options": [
+      { "id": "A", "text": "Son sinónimos exactos" },
+      { "id": "B", "text": "Machine Learning es una de las formas de lograr Inteligencia Artificial" },
+      { "id": "C", "text": "La IA es un subconjunto del Machine Learning" },
+      { "id": "D", "text": "No tienen ninguna relación" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Machine Learning es un enfoque (entre varios) para lograr comportamiento inteligente en sistemas de IA, aprendiendo patrones a partir de datos.",
+      "whyIncorrect": {
+        "A": "No son sinónimos: la IA es el concepto general y el ML es una técnica dentro de ella.",
+        "C": "Es al revés: el ML es un subconjunto de la IA, no al contrario.",
+        "D": "El ML es una de las principales técnicas usadas para construir sistemas de IA."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/get-started-ai-fundamentals/"
+  },
+  {
+    "id": 14,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Detección de anomalías (workload)",
+    "scenario": "Un sistema de monitoreo industrial debe alertar automáticamente cuando el consumo de energía de una máquina se desvía de su patrón normal histórico.",
+    "question": "¿Qué carga de trabajo de IA corresponde a este escenario?",
+    "options": [
+      { "id": "A", "text": "Detección de anomalías" },
+      { "id": "B", "text": "Reconocimiento facial" },
+      { "id": "C", "text": "Traducción automática" },
+      { "id": "D", "text": "Extracción de frases clave" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La detección de anomalías identifica valores o patrones de datos que se desvían significativamente del comportamiento esperado.",
+      "whyIncorrect": {
+        "B": "El reconocimiento facial identifica personas en imágenes, no patrones de consumo energético.",
+        "C": "La traducción automática convierte texto entre idiomas.",
+        "D": "La extracción de frases clave es una tarea de NLP sobre texto, no de series numéricas."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/get-started-ai-fundamentals/"
+  },
+  {
+    "id": 15,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Moderación de contenido dañino",
+    "scenario": "Una plataforma que permite a usuarios generar imágenes con IA necesita bloquear automáticamente contenido violento u ofensivo antes de publicarlo.",
+    "question": "¿Qué principio o práctica de IA responsable respalda este control?",
+    "options": [
+      { "id": "A", "text": "Confiabilidad y seguridad, mediante moderación de contenido dañino" },
+      { "id": "B", "text": "Inclusión, permitiendo cualquier tipo de contenido" },
+      { "id": "C", "text": "Rendición de cuentas, delegando la responsabilidad al usuario final" },
+      { "id": "D", "text": "Transparencia, mostrando el contenido sin filtrar" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La moderación de contenido dañino o inseguro forma parte del principio de confiabilidad y seguridad, protegiendo a los usuarios de daños.",
+      "whyIncorrect": {
+        "B": "La inclusión no implica permitir contenido dañino; se enfoca en accesibilidad, no en ausencia de controles.",
+        "C": "La rendición de cuentas no elimina la responsabilidad de la organización que despliega el sistema.",
+        "D": "La transparencia no significa exponer contenido sin moderar."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/content-safety/overview"
+  },
+  {
+    "id": 16,
+    "domain": "Cargas de Trabajo de IA y Consideraciones Responsables",
+    "topic": "Conversational AI (workload)",
+    "scenario": "Una empresa quiere que los clientes puedan resolver dudas frecuentes escribiendo en un chat, con respuestas automáticas basadas en intenciones detectadas.",
+    "question": "¿Qué carga de trabajo de IA es la más adecuada?",
+    "options": [
+      { "id": "A", "text": "Conversational AI (chatbots)" },
+      { "id": "B", "text": "Visión por computadora" },
+      { "id": "C", "text": "Pronóstico de demanda" },
+      { "id": "D", "text": "Clustering de clientes" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Conversational AI cubre chatbots y asistentes virtuales que interpretan intenciones del usuario y responden de forma natural.",
+      "whyIncorrect": {
+        "B": "No hay imágenes involucradas en este escenario.",
+        "C": "El pronóstico de demanda predice valores futuros, no gestiona diálogos.",
+        "D": "El clustering agrupa datos; no responde preguntas en tiempo real."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/conversational-language-understanding/overview"
+  },
+  {
+    "id": 17,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Regresión",
+    "scenario": "Una inmobiliaria quiere predecir el precio de venta de una casa como un valor numérico continuo, basado en metros cuadrados, ubicación y antigüedad.",
+    "question": "¿Qué tipo de modelo de Machine Learning es el adecuado?",
+    "options": [
+      { "id": "A", "text": "Regresión" },
+      { "id": "B", "text": "Clasificación" },
+      { "id": "C", "text": "Clustering" },
+      { "id": "D", "text": "Detección de anomalías" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La regresión predice valores numéricos continuos, como un precio, a partir de variables de entrada.",
+      "whyIncorrect": {
+        "B": "La clasificación predice categorías discretas (por ejemplo sí/no), no un valor continuo.",
+        "C": "El clustering agrupa datos sin etiquetas; no predice un valor.",
+        "D": "La detección de anomalías identifica valores atípicos, no predice precios."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-regression-model-azure-machine-learning/"
+  },
+  {
+    "id": 18,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Clasificación",
+    "scenario": "Un banco quiere predecir si una transacción es 'fraudulenta' o 'legítima' basándose en el historial de transacciones.",
+    "question": "¿Qué tipo de modelo de ML corresponde?",
+    "options": [
+      { "id": "A", "text": "Clustering" },
+      { "id": "B", "text": "Clasificación" },
+      { "id": "C", "text": "Regresión" },
+      { "id": "D", "text": "Reducción de dimensionalidad" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "La clasificación asigna una entrada a una de varias categorías discretas predefinidas, como 'fraudulenta' o 'legítima'.",
+      "whyIncorrect": {
+        "A": "El clustering agrupa datos sin categorías predefinidas.",
+        "C": "La regresión predice un valor numérico continuo, no una categoría.",
+        "D": "La reducción de dimensionalidad simplifica variables; no clasifica."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-classification-model-azure-machine-learning/"
+  },
+  {
+    "id": 19,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Clustering",
+    "scenario": "Una tienda online quiere agrupar automáticamente a sus clientes en segmentos según patrones de compra similares, sin tener categorías predefinidas.",
+    "question": "¿Qué técnica de Machine Learning es la adecuada?",
+    "options": [
+      { "id": "A", "text": "Clasificación supervisada" },
+      { "id": "B", "text": "Regresión lineal" },
+      { "id": "C", "text": "Clustering (agrupamiento)" },
+      { "id": "D", "text": "Detección de objetos" }
+    ],
+    "correctAnswer": "C",
+    "explanation": {
+      "whyCorrect": "El clustering es una técnica de aprendizaje no supervisado que agrupa datos similares sin etiquetas previas.",
+      "whyIncorrect": {
+        "A": "La clasificación requiere categorías etiquetadas de antemano.",
+        "B": "La regresión predice valores numéricos, no agrupa datos.",
+        "D": "La detección de objetos es una tarea de visión por computadora."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-clustering-model-azure-machine-learning/"
+  },
+  {
+    "id": 20,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Azure Machine Learning Studio",
+    "scenario": "Un equipo de científicos de datos quiere un entorno colaborativo en la nube para entrenar, registrar y desplegar modelos de ML, con opción de código y sin código.",
+    "question": "¿Qué servicio de Azure deberían usar?",
+    "options": [
+      { "id": "A", "text": "Azure Machine Learning Studio" },
+      { "id": "B", "text": "Azure AI Search" },
+      { "id": "C", "text": "Azure DevOps" },
+      { "id": "D", "text": "Azure Data Factory" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Azure Machine Learning Studio es el entorno colaborativo que ofrece herramientas de código y sin código para todo el ciclo de vida de ML.",
+      "whyIncorrect": {
+        "B": "Azure AI Search es un servicio de búsqueda e indexación, no de entrenamiento de modelos.",
+        "C": "Azure DevOps gestiona pipelines de CI/CD y trabajo en equipo, no el entrenamiento de ML en sí.",
+        "D": "Azure Data Factory orquesta el movimiento y transformación de datos, no entrena modelos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/overview-what-is-azure-machine-learning"
+  },
+  {
+    "id": 21,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Automated ML (AutoML)",
+    "scenario": "Un analista sin experiencia profunda en ciencia de datos necesita generar rápidamente el mejor modelo posible para predecir abandono de clientes, probando varios algoritmos automáticamente.",
+    "question": "¿Qué característica de Azure Machine Learning debería usar?",
+    "options": [
+      { "id": "A", "text": "Automated Machine Learning (AutoML)" },
+      { "id": "B", "text": "Designer con arrastrar y soltar únicamente" },
+      { "id": "C", "text": "Compute clusters manuales" },
+      { "id": "D", "text": "Azure AI Content Safety" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "AutoML prueba automáticamente múltiples algoritmos y configuraciones de hiperparámetros para encontrar el mejor modelo sin necesidad de codificar cada experimento.",
+      "whyIncorrect": {
+        "B": "El Designer permite construir pipelines visualmente, pero no prueba automáticamente múltiples algoritmos por sí solo.",
+        "C": "Los clústeres de cómputo son solo la infraestructura de ejecución, no eligen el algoritmo.",
+        "D": "Content Safety es un servicio de moderación de contenido, no de entrenamiento de modelos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-automated-ml"
+  },
+  {
+    "id": 22,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Designer (arrastrar y soltar)",
+    "scenario": "Un equipo sin experiencia en programación quiere construir un pipeline de entrenamiento de ML arrastrando y conectando módulos visualmente.",
+    "question": "¿Qué herramienta de Azure Machine Learning es la más adecuada?",
+    "options": [
+      { "id": "A", "text": "Azure Machine Learning Designer" },
+      { "id": "B", "text": "Jupyter Notebooks con Python puro" },
+      { "id": "C", "text": "Azure CLI" },
+      { "id": "D", "text": "Azure Functions" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El Designer ofrece una interfaz visual de arrastrar y soltar para construir pipelines de entrenamiento sin escribir código.",
+      "whyIncorrect": {
+        "B": "Los notebooks requieren escribir código Python.",
+        "C": "Azure CLI es una herramienta de línea de comandos, no visual.",
+        "D": "Azure Functions es un servicio de cómputo serverless, no una herramienta de diseño de ML."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-designer"
+  },
+  {
+    "id": 23,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Pipelines de Machine Learning",
+    "scenario": "Un equipo quiere encadenar automáticamente los pasos de preparación de datos, entrenamiento y evaluación de un modelo, para poder reproducirlos y programarlos periódicamente.",
+    "question": "¿Qué concepto de Azure Machine Learning permite esto?",
+    "options": [
+      { "id": "A", "text": "Compute instance individual" },
+      { "id": "B", "text": "ML Pipelines" },
+      { "id": "C", "text": "Azure Key Vault" },
+      { "id": "D", "text": "Blob Storage sin estructura" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Los pipelines de ML encadenan y automatizan los pasos del flujo de trabajo de ML de forma reproducible y programable.",
+      "whyIncorrect": {
+        "A": "Una instancia de cómputo es solo un recurso de ejecución individual, no organiza pasos.",
+        "C": "Key Vault gestiona secretos, no flujos de entrenamiento.",
+        "D": "Blob Storage almacena archivos, no orquesta pasos de un flujo de ML."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-ml-pipelines"
+  },
+  {
+    "id": 24,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Aprendizaje supervisado vs no supervisado",
+    "scenario": "Un dataset de clientes no tiene ninguna etiqueta de categoría asignada previamente, y se quiere descubrir estructura oculta en los datos.",
+    "question": "¿Qué tipo de aprendizaje es el adecuado?",
+    "options": [
+      { "id": "A", "text": "Aprendizaje supervisado" },
+      { "id": "B", "text": "Aprendizaje no supervisado" },
+      { "id": "C", "text": "Aprendizaje por refuerzo" },
+      { "id": "D", "text": "Aprendizaje federado" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "El aprendizaje no supervisado trabaja con datos sin etiquetas, buscando patrones o agrupaciones ocultas como en el clustering.",
+      "whyIncorrect": {
+        "A": "El aprendizaje supervisado requiere datos etiquetados con la respuesta correcta conocida.",
+        "C": "El aprendizaje por refuerzo aprende mediante recompensas o penalizaciones en un entorno, no analiza un dataset estático.",
+        "D": "El aprendizaje federado distribuye el entrenamiento entre dispositivos; no describe el tipo de etiquetado de los datos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/fundamentals-machine-learning/"
+  },
+  {
+    "id": 25,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Métrica Recall",
+    "scenario": "Un modelo de clasificación de fraude tiene muchos falsos negativos: transacciones fraudulentas que el modelo clasifica como legítimas.",
+    "question": "¿Qué métrica de evaluación se ve más afectada por este problema?",
+    "options": [
+      { "id": "A", "text": "Recall (sensibilidad)" },
+      { "id": "B", "text": "Precision" },
+      { "id": "C", "text": "Latencia del modelo" },
+      { "id": "D", "text": "Tamaño del dataset" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Recall mide la proporción de casos positivos reales (fraudes) que el modelo detecta correctamente; muchos falsos negativos bajan directamente el recall.",
+      "whyIncorrect": {
+        "B": "Precision mide qué proporción de las predicciones positivas fueron correctas (afectada por falsos positivos, no negativos).",
+        "C": "La latencia es una métrica de rendimiento operativo, no de calidad predictiva.",
+        "D": "El tamaño del dataset no es una métrica de evaluación del modelo."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-classification-model-azure-machine-learning/"
+  },
+  {
+    "id": 26,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Métrica Precision",
+    "scenario": "Un modelo de spam marca como spam varios correos legítimos importantes (falsos positivos), aunque detecta bien la mayoría del spam real.",
+    "question": "¿Qué métrica se ve más afectada?",
+    "options": [
+      { "id": "A", "text": "Precision" },
+      { "id": "B", "text": "Recall" },
+      { "id": "C", "text": "Número de clusters" },
+      { "id": "D", "text": "Coeficiente de determinación (R²)" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Precision mide qué proporción de los casos clasificados como positivos (spam) realmente lo son; muchos falsos positivos bajan la precisión.",
+      "whyIncorrect": {
+        "B": "Recall mide la detección de positivos reales (afectada por falsos negativos), no está directamente afectado por falsos positivos.",
+        "C": "El número de clusters aplica a modelos no supervisados, no a clasificación de spam.",
+        "D": "R² es una métrica de modelos de regresión, no de clasificación."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-classification-model-azure-machine-learning/"
+  },
+  {
+    "id": 27,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Deep learning / redes neuronales",
+    "scenario": "Un modelo para reconocer objetos en imágenes usa múltiples capas de nodos interconectados que extraen características cada vez más complejas de los píxeles.",
+    "question": "¿Qué técnica de Machine Learning describe este enfoque?",
+    "options": [
+      { "id": "A", "text": "Regresión lineal simple" },
+      { "id": "B", "text": "Deep learning con redes neuronales" },
+      { "id": "C", "text": "Clustering jerárquico" },
+      { "id": "D", "text": "Análisis de series de tiempo clásico" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "El deep learning usa redes neuronales con múltiples capas para aprender representaciones complejas de datos como imágenes.",
+      "whyIncorrect": {
+        "A": "La regresión lineal es un modelo simple de una sola relación lineal; no usa capas de nodos.",
+        "C": "El clustering jerárquico agrupa datos; no extrae características por capas.",
+        "D": "El análisis de series de tiempo clásico no usa redes neuronales de múltiples capas por definición."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/fundamentals-machine-learning/"
+  },
+  {
+    "id": 28,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Datos de entrenamiento y prueba",
+    "scenario": "Un científico de datos entrena un modelo con el 100% de los datos disponibles y lo evalúa con los mismos datos, obteniendo una precisión perfecta.",
+    "question": "¿Qué problema hay con esta práctica?",
+    "options": [
+      { "id": "A", "text": "Ninguno, es la forma correcta de evaluar" },
+      { "id": "B", "text": "No se puede saber si el modelo generaliza a datos nuevos (riesgo de overfitting)" },
+      { "id": "C", "text": "El modelo necesita más clusters" },
+      { "id": "D", "text": "El modelo necesita menos hiperparámetros" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Evaluar con los mismos datos de entrenamiento no mide la capacidad de generalización; se debe reservar un conjunto de prueba independiente para validar el desempeño real.",
+      "whyIncorrect": {
+        "A": "Es una mala práctica; puede ocultar sobreajuste (overfitting).",
+        "C": "El número de clusters aplica a modelos no supervisados, no resuelve este problema.",
+        "D": "Reducir hiperparámetros no soluciona la falta de un conjunto de prueba separado."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/fundamentals-machine-learning/"
+  },
+  {
+    "id": 29,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Regresión vs clasificación",
+    "scenario": "Se necesita predecir cuántos productos se venderán la próxima semana (un número), no una categoría.",
+    "question": "¿Qué tipo de modelo es el correcto?",
+    "options": [
+      { "id": "A", "text": "Clasificación binaria" },
+      { "id": "B", "text": "Regresión" },
+      { "id": "C", "text": "Clustering" },
+      { "id": "D", "text": "Detección de objetos" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Predecir una cantidad numérica continua (unidades vendidas) es un problema de regresión.",
+      "whyIncorrect": {
+        "A": "La clasificación binaria predice una categoría de dos clases, no una cantidad numérica.",
+        "C": "El clustering agrupa datos; no predice cantidades futuras.",
+        "D": "La detección de objetos es una tarea de visión por computadora."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-regression-model-azure-machine-learning/"
+  },
+  {
+    "id": 30,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Features (características)",
+    "scenario": "En un modelo que predice el precio de una casa, 'metros cuadrados', 'número de habitaciones' y 'ubicación' son las variables usadas como entrada.",
+    "question": "¿Cómo se denominan estas variables de entrada en Machine Learning?",
+    "options": [
+      { "id": "A", "text": "Etiquetas (labels)" },
+      { "id": "B", "text": "Características (features)" },
+      { "id": "C", "text": "Hiperparámetros" },
+      { "id": "D", "text": "Clusters" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Las características (features) son las variables de entrada que el modelo usa para hacer predicciones.",
+      "whyIncorrect": {
+        "A": "La etiqueta (label) es el valor que se quiere predecir (el precio), no las variables de entrada.",
+        "C": "Los hiperparámetros son configuraciones del algoritmo de entrenamiento, no variables del dataset.",
+        "D": "Los clusters son grupos resultantes de un modelo no supervisado, no variables de entrada."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/fundamentals-machine-learning/"
+  },
+  {
+    "id": 31,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Notebooks en Azure ML",
+    "scenario": "Un equipo de data scientists con experiencia en Python quiere escribir y ejecutar su propio código de entrenamiento personalizado dentro de Azure Machine Learning.",
+    "question": "¿Qué herramienta dentro de Azure Machine Learning Studio deberían usar?",
+    "options": [
+      { "id": "A", "text": "Designer (arrastrar y soltar)" },
+      { "id": "B", "text": "Notebooks integrados con Python" },
+      { "id": "C", "text": "Automated ML sin código" },
+      { "id": "D", "text": "Content Safety Studio" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Los notebooks integrados permiten escribir y ejecutar código Python personalizado directamente en el entorno de Azure Machine Learning.",
+      "whyIncorrect": {
+        "A": "El Designer es una herramienta visual sin código, no para escribir código personalizado.",
+        "C": "AutoML automatiza la selección de modelos sin necesidad de código, pero no da control total sobre el código de entrenamiento.",
+        "D": "Content Safety Studio es para moderación de contenido, no para entrenar modelos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/overview-what-is-azure-machine-learning"
+  },
+  {
+    "id": 32,
+    "domain": "Principios de Machine Learning en Azure",
+    "topic": "Métrica Accuracy",
+    "scenario": "Un modelo de clasificación clasifica correctamente 90 de 100 correos como spam o no spam.",
+    "question": "¿Qué métrica describe directamente este resultado (90%)?",
+    "options": [
+      { "id": "A", "text": "Accuracy (exactitud)" },
+      { "id": "B", "text": "Recall" },
+      { "id": "C", "text": "Número de clusters" },
+      { "id": "D", "text": "Coeficiente R²" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Accuracy es la proporción total de predicciones correctas sobre el total de casos evaluados.",
+      "whyIncorrect": {
+        "B": "Recall mide específicamente la detección de casos positivos reales, no la exactitud global.",
+        "C": "El número de clusters no aplica a un problema de clasificación supervisada.",
+        "D": "R² es una métrica de regresión, no de clasificación."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/training/modules/create-classification-model-azure-machine-learning/"
+  },
+  {
+    "id": 33,
+    "domain": "Visión por Computadora",
+    "topic": "Azure AI Vision - Etiquetas (tags)",
+    "scenario": "Una app necesita generar automáticamente una lista de palabras clave que describan el contenido de una foto (por ejemplo 'perro', 'parque', 'aire libre').",
+    "question": "¿Qué característica de Azure AI Vision (Image Analysis) provee esto?",
+    "options": [
+      { "id": "A", "text": "Detección de objetos con cuadros delimitadores" },
+      { "id": "B", "text": "Generación de etiquetas (tags)" },
+      { "id": "C", "text": "Reconocimiento facial" },
+      { "id": "D", "text": "OCR (extracción de texto)" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "La generación de etiquetas identifica conceptos y objetos presentes en la imagen y los devuelve como una lista de palabras clave.",
+      "whyIncorrect": {
+        "A": "La detección de objetos devuelve además la ubicación (bounding box) de cada objeto, no solo palabras clave generales.",
+        "C": "El reconocimiento facial identifica y analiza rostros, no genera etiquetas generales de la imagen.",
+        "D": "OCR extrae texto legible dentro de la imagen, no genera descripciones de contenido."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-image-analysis"
+  },
+  {
+    "id": 34,
+    "domain": "Visión por Computadora",
+    "topic": "Detección de objetos vs clasificación de imágenes",
+    "scenario": "Una app debe indicar no solo qué tipos de objetos hay en una foto, sino también en qué posición exacta (coordenadas) se encuentra cada uno.",
+    "question": "¿Qué capacidad de visión por computadora es la correcta?",
+    "options": [
+      { "id": "A", "text": "Clasificación de imágenes" },
+      { "id": "B", "text": "Detección de objetos (Object Detection)" },
+      { "id": "C", "text": "OCR" },
+      { "id": "D", "text": "Análisis de sentimiento" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "La detección de objetos identifica múltiples objetos en una imagen y devuelve un cuadro delimitador (bounding box) con su ubicación.",
+      "whyIncorrect": {
+        "A": "La clasificación de imágenes asigna una única etiqueta general a toda la imagen, sin ubicación de objetos individuales.",
+        "C": "OCR extrae texto de la imagen; no ubica objetos.",
+        "D": "El análisis de sentimiento es una tarea de NLP sobre texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-image-analysis"
+  },
+  {
+    "id": 35,
+    "domain": "Visión por Computadora",
+    "topic": "OCR (reconocimiento óptico de caracteres)",
+    "scenario": "Una empresa necesita extraer el texto impreso y manuscrito de fotos de recibos escaneados para convertirlo en texto editable.",
+    "question": "¿Qué capacidad de Azure AI Vision se debe usar?",
+    "options": [
+      { "id": "A", "text": "Reconocimiento óptico de caracteres (OCR)" },
+      { "id": "B", "text": "Detección de objetos" },
+      { "id": "C", "text": "Reconocimiento facial" },
+      { "id": "D", "text": "Clasificación de imágenes" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "OCR (Read API) extrae texto impreso y manuscrito de imágenes y documentos, convirtiéndolo en texto digital.",
+      "whyIncorrect": {
+        "B": "La detección de objetos ubica objetos físicos, no extrae texto.",
+        "C": "El reconocimiento facial analiza rostros, no texto.",
+        "D": "La clasificación de imágenes asigna categorías generales, no extrae texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-ocr"
+  },
+  {
+    "id": 36,
+    "domain": "Visión por Computadora",
+    "topic": "Azure AI Face",
+    "scenario": "Un sistema de control de acceso necesita verificar si el rostro capturado por una cámara corresponde al de una persona registrada previamente.",
+    "question": "¿Qué servicio de Azure es el adecuado?",
+    "options": [
+      { "id": "A", "text": "Azure AI Face" },
+      { "id": "B", "text": "Azure AI Document Intelligence" },
+      { "id": "C", "text": "Azure AI Translator" },
+      { "id": "D", "text": "Azure AI Content Safety" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Azure AI Face detecta, analiza y verifica rostros humanos, incluyendo la comparación de identidad (face verification).",
+      "whyIncorrect": {
+        "B": "Document Intelligence extrae datos estructurados de documentos, no analiza rostros.",
+        "C": "Translator traduce texto entre idiomas.",
+        "D": "Content Safety modera contenido dañino, no verifica identidad facial."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-identity"
+  },
+  {
+    "id": 37,
+    "domain": "Visión por Computadora",
+    "topic": "Uso responsable del reconocimiento facial",
+    "scenario": "Una empresa quiere usar reconocimiento facial para identificar públicamente a personas en video de vigilancia sin su consentimiento.",
+    "question": "¿Qué consideración de IA responsable limita este uso?",
+    "options": [
+      { "id": "A", "text": "Privacidad y equidad, dado el riesgo de vigilancia no consentida y sesgos en la precisión entre grupos demográficos" },
+      { "id": "B", "text": "Ninguna, el reconocimiento facial no tiene restricciones de uso" },
+      { "id": "C", "text": "Solo aplica el principio de inclusión" },
+      { "id": "D", "text": "Solo aplica el principio de confiabilidad y seguridad" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Microsoft limita y restringe casos de uso de reconocimiento facial de alto riesgo por preocupaciones de privacidad, consentimiento y sesgos de precisión entre distintos grupos demográficos.",
+      "whyIncorrect": {
+        "B": "El reconocimiento facial sí tiene restricciones de acceso y uso definidas por políticas de IA responsable.",
+        "C": "La inclusión no es el principio central en este escenario; lo son privacidad y equidad.",
+        "D": "Confiabilidad y seguridad no es el principio principal aquí; se trata de vigilancia y sesgo, no de estabilidad técnica."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-identity"
+  },
+  {
+    "id": 38,
+    "domain": "Visión por Computadora",
+    "topic": "Azure AI Document Intelligence",
+    "scenario": "Una empresa recibe cientos de facturas en PDF y necesita extraer automáticamente campos como número de factura, fecha y monto total en formato estructurado.",
+    "question": "¿Qué servicio de Azure es el más adecuado?",
+    "options": [
+      { "id": "A", "text": "Azure AI Document Intelligence" },
+      { "id": "B", "text": "Azure AI Face" },
+      { "id": "C", "text": "Azure AI Speech" },
+      { "id": "D", "text": "Azure AI Translator" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Document Intelligence (antes Form Recognizer) usa modelos preconstruidos, como el de facturas, para extraer campos clave estructurados de documentos.",
+      "whyIncorrect": {
+        "B": "Face analiza rostros, no documentos.",
+        "C": "Speech convierte voz a texto y viceversa, no procesa documentos escaneados.",
+        "D": "Translator traduce texto; no extrae campos estructurados de facturas."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/document-intelligence/overview"
+  },
+  {
+    "id": 39,
+    "domain": "Visión por Computadora",
+    "topic": "Custom Vision",
+    "scenario": "Una fábrica necesita entrenar un modelo propio para detectar un tipo específico de defecto en piezas metálicas, usando sus propias fotos etiquetadas.",
+    "question": "¿Qué servicio de Azure permite entrenar un modelo de visión personalizado sin ser experto en ML?",
+    "options": [
+      { "id": "A", "text": "Azure AI Custom Vision" },
+      { "id": "B", "text": "Azure AI Face" },
+      { "id": "C", "text": "Azure AI Document Intelligence" },
+      { "id": "D", "text": "Azure AI Translator" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Custom Vision permite subir imágenes propias etiquetadas y entrenar modelos personalizados de clasificación o detección de objetos sin experiencia profunda en ML.",
+      "whyIncorrect": {
+        "B": "Face está diseñado específicamente para análisis de rostros, no para defectos industriales.",
+        "C": "Document Intelligence extrae datos de documentos, no defectos visuales en piezas.",
+        "D": "Translator es un servicio de traducción de texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/custom-vision-service/overview"
+  },
+  {
+    "id": 40,
+    "domain": "Visión por Computadora",
+    "topic": "Clasificación de imágenes aplicada",
+    "scenario": "Una app de e-commerce solo necesita saber si una foto subida por el vendedor corresponde a la categoría 'zapatos', 'ropa' o 'electrónica', sin necesidad de ubicar objetos dentro de la imagen.",
+    "question": "¿Qué capacidad de visión por computadora es más adecuada y eficiente para este caso?",
+    "options": [
+      { "id": "A", "text": "Detección de objetos" },
+      { "id": "B", "text": "Clasificación de imágenes (Image Classification)" },
+      { "id": "C", "text": "OCR" },
+      { "id": "D", "text": "Reconocimiento facial" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Cuando solo se necesita asignar una categoría general a toda la imagen, la clasificación de imágenes es más simple y eficiente que detectar múltiples objetos individuales.",
+      "whyIncorrect": {
+        "A": "La detección de objetos agrega complejidad innecesaria (ubicación de cada objeto) cuando solo se necesita una categoría general.",
+        "C": "OCR extrae texto; no clasifica el tipo de producto.",
+        "D": "El reconocimiento facial no aplica a productos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-image-analysis"
+  },
+  {
+    "id": 41,
+    "domain": "Visión por Computadora",
+    "topic": "Descripciones de imagen (captioning)",
+    "scenario": "Una app de accesibilidad necesita generar automáticamente una oración en lenguaje natural que describa lo que ocurre en una foto, para lectores de pantalla.",
+    "question": "¿Qué característica de Azure AI Vision se debe usar?",
+    "options": [
+      { "id": "A", "text": "Generación de descripciones (image captioning)" },
+      { "id": "B", "text": "Detección de objetos" },
+      { "id": "C", "text": "OCR" },
+      { "id": "D", "text": "Análisis de video en tiempo real únicamente" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La generación de descripciones (captioning) produce una frase en lenguaje natural que resume el contenido de la imagen, útil para accesibilidad.",
+      "whyIncorrect": {
+        "B": "La detección de objetos da una lista de objetos y ubicaciones, no una oración descriptiva completa.",
+        "C": "OCR extrae texto visible; no describe la escena.",
+        "D": "El análisis de video en tiempo real no es la capacidad específica para generar una descripción textual de una imagen fija."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-image-analysis"
+  },
+  {
+    "id": 42,
+    "domain": "Visión por Computadora",
+    "topic": "Face - verificación de identidad",
+    "scenario": "Un sistema debe responder específicamente '¿esta persona en la foto es Juan Pérez, sí o no?' comparando contra una foto de referencia.",
+    "question": "¿Qué capacidad de Azure AI Face corresponde a esta tarea?",
+    "options": [
+      { "id": "A", "text": "Detección de rostros (Face Detection)" },
+      { "id": "B", "text": "Verificación de identidad (Face Verification)" },
+      { "id": "C", "text": "Análisis de emociones" },
+      { "id": "D", "text": "OCR sobre documentos de identidad" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "La verificación de identidad compara dos rostros (uno de referencia) para confirmar si pertenecen a la misma persona.",
+      "whyIncorrect": {
+        "A": "La detección solo identifica que hay un rostro presente, sin confirmar identidad.",
+        "C": "El análisis de emociones o atributos no responde si es la misma persona.",
+        "D": "OCR extrae texto de documentos; no compara rostros."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-identity"
+  },
+  {
+    "id": 43,
+    "domain": "Visión por Computadora",
+    "topic": "Document Intelligence - modelos preconstruidos",
+    "scenario": "Una empresa de gastos de viaje quiere extraer automáticamente el monto, fecha y comercio de fotos de recibos de compra, sin entrenar ningún modelo propio.",
+    "question": "¿Qué recurso de Azure AI Document Intelligence conviene usar?",
+    "options": [
+      { "id": "A", "text": "Un modelo preconstruido de recibos (prebuilt receipt model)" },
+      { "id": "B", "text": "Un modelo de detección de objetos personalizado" },
+      { "id": "C", "text": "Azure AI Face" },
+      { "id": "D", "text": "Azure AI Translator" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Document Intelligence ofrece modelos preconstruidos (facturas, recibos, tarjetas de identificación) listos para usar sin necesidad de entrenamiento.",
+      "whyIncorrect": {
+        "B": "Un modelo de detección de objetos no está diseñado para extraer campos estructurados de un recibo.",
+        "C": "Face analiza rostros, no recibos.",
+        "D": "Translator traduce texto; no extrae campos estructurados."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/document-intelligence/overview"
+  },
+  {
+    "id": 44,
+    "domain": "Visión por Computadora",
+    "topic": "Análisis de video (conteo de personas)",
+    "scenario": "Una tienda quiere contar cuántas personas entran a la tienda analizando el video de sus cámaras de seguridad en tiempo casi real.",
+    "question": "¿Qué carga de trabajo de IA respalda este análisis?",
+    "options": [
+      { "id": "A", "text": "Visión por computadora (análisis de video/detección de objetos en frames)" },
+      { "id": "B", "text": "Procesamiento de lenguaje natural" },
+      { "id": "C", "text": "Traducción automática" },
+      { "id": "D", "text": "Extracción de frases clave" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El conteo de personas mediante detección de objetos/personas sobre frames de video es una aplicación de visión por computadora.",
+      "whyIncorrect": {
+        "B": "El NLP procesa texto, no video.",
+        "C": "La traducción automática trabaja con idiomas, no imágenes.",
+        "D": "La extracción de frases clave es una tarea de texto, no de video."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview"
+  },
+  {
+    "id": 45,
+    "domain": "Visión por Computadora",
+    "topic": "Combinación de OCR y descripciones",
+    "scenario": "Una app para personas con baja visión necesita tanto leer el texto de un cartel como describir la escena general alrededor del cartel.",
+    "question": "¿Qué combinación de capacidades de Azure AI Vision cubre ambas necesidades?",
+    "options": [
+      { "id": "A", "text": "OCR + generación de descripciones (captioning)" },
+      { "id": "B", "text": "Solo detección de objetos" },
+      { "id": "C", "text": "Solo reconocimiento facial" },
+      { "id": "D", "text": "Solo clustering de imágenes" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "OCR extrae el texto del cartel, mientras que la generación de descripciones resume la escena en lenguaje natural; juntas cubren ambas necesidades.",
+      "whyIncorrect": {
+        "B": "La detección de objetos por sí sola no lee texto ni genera una descripción narrativa completa.",
+        "C": "El reconocimiento facial no aplica a carteles ni texto.",
+        "D": "El clustering no es una capacidad de Azure AI Vision para este caso; es una técnica de ML no supervisado."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-image-analysis"
+  },
+  {
+    "id": 46,
+    "domain": "Visión por Computadora",
+    "topic": "Moderación de contenido en imágenes",
+    "scenario": "Una plataforma de fotos generadas por usuarios necesita detectar automáticamente si una imagen contiene contenido para adultos antes de publicarla.",
+    "question": "¿Qué tipo de capacidad de análisis de imagen respalda esta necesidad?",
+    "options": [
+      { "id": "A", "text": "Detección de contenido inapropiado/adulto (moderación de imágenes)" },
+      { "id": "B", "text": "OCR" },
+      { "id": "C", "text": "Detección de objetos genérica" },
+      { "id": "D", "text": "Clustering de imágenes" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Azure ofrece capacidades de análisis de imagen que detectan contenido para adultos, gore o sugerente, útiles para moderación.",
+      "whyIncorrect": {
+        "B": "OCR extrae texto; no clasifica contenido inapropiado.",
+        "C": "La detección de objetos genérica identifica objetos comunes, no está orientada a moderación de contenido.",
+        "D": "El clustering agrupa imágenes similares; no clasifica si el contenido es apropiado."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-image-analysis"
+  },
+  {
+    "id": 47,
+    "domain": "Visión por Computadora",
+    "topic": "Casos de uso de OCR",
+    "scenario": "Un banco necesita digitalizar cheques escaneados para extraer el monto escrito y el número de cuenta automáticamente.",
+    "question": "¿Qué tecnología de Azure AI Vision es la base de esta solución?",
+    "options": [
+      { "id": "A", "text": "OCR (Read API)" },
+      { "id": "B", "text": "Face API" },
+      { "id": "C", "text": "Custom Vision para detección de objetos" },
+      { "id": "D", "text": "Traducción de voz" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "OCR extrae texto impreso y manuscrito de imágenes escaneadas, como cheques, para convertirlo en datos digitales.",
+      "whyIncorrect": {
+        "B": "Face API analiza rostros, no texto en documentos.",
+        "C": "Custom Vision para detección de objetos ubica objetos visuales, no extrae texto manuscrito.",
+        "D": "La traducción de voz trabaja con audio hablado, no con imágenes escaneadas."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/computer-vision/overview-ocr"
+  },
+  {
+    "id": 48,
+    "domain": "Visión por Computadora",
+    "topic": "Custom Vision vs modelo preconstruido",
+    "scenario": "Una empresa necesita distinguir entre 'manzana' y 'naranja' en fotos de frutas, una categoría muy específica que el modelo preconstruido general no reconoce bien.",
+    "question": "¿Qué enfoque es el correcto?",
+    "options": [
+      { "id": "A", "text": "Usar el modelo preconstruido genérico de Image Analysis sin cambios" },
+      { "id": "B", "text": "Entrenar un modelo personalizado con Custom Vision usando fotos etiquetadas propias" },
+      { "id": "C", "text": "Usar únicamente OCR" },
+      { "id": "D", "text": "Usar Azure AI Face" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Cuando se necesita reconocer categorías muy específicas del negocio, Custom Vision permite entrenar un modelo propio con imágenes etiquetadas específicas.",
+      "whyIncorrect": {
+        "A": "El modelo preconstruido genérico está entrenado para conceptos generales y puede no distinguir bien categorías muy específicas del negocio.",
+        "C": "OCR extrae texto; no clasifica frutas.",
+        "D": "Face está diseñado para rostros humanos, no para frutas."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/custom-vision-service/overview"
+  },
+  {
+    "id": 49,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Extracción de frases clave",
+    "scenario": "Una empresa quiere identificar automáticamente los temas principales mencionados en miles de reseñas de productos, sin leer cada una manualmente.",
+    "question": "¿Qué característica de Azure AI Language es la adecuada?",
+    "options": [
+      { "id": "A", "text": "Extracción de frases clave (Key Phrase Extraction)" },
+      { "id": "B", "text": "Reconocimiento de voz" },
+      { "id": "C", "text": "Traducción de texto" },
+      { "id": "D", "text": "Detección de objetos" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La extracción de frases clave identifica los conceptos y temas principales dentro de un texto de forma automática.",
+      "whyIncorrect": {
+        "B": "El reconocimiento de voz convierte audio en texto, no analiza temas en texto ya existente.",
+        "C": "La traducción convierte texto entre idiomas, no extrae temas.",
+        "D": "La detección de objetos es una tarea de visión por computadora."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/key-phrase-extraction/overview"
+  },
+  {
+    "id": 50,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Análisis de sentimiento",
+    "scenario": "Un equipo de atención al cliente quiere clasificar automáticamente cada mensaje de soporte como positivo, negativo o neutral.",
+    "question": "¿Qué servicio de Azure AI Language se debe usar?",
+    "options": [
+      { "id": "A", "text": "Análisis de sentimiento (Sentiment Analysis)" },
+      { "id": "B", "text": "Reconocimiento de entidades" },
+      { "id": "C", "text": "Detección de idioma" },
+      { "id": "D", "text": "Traducción de texto" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El análisis de sentimiento clasifica el tono emocional de un texto como positivo, negativo, neutral o mixto.",
+      "whyIncorrect": {
+        "B": "El reconocimiento de entidades identifica nombres, lugares u organizaciones, no el tono emocional.",
+        "C": "La detección de idioma identifica en qué idioma está escrito el texto.",
+        "D": "La traducción convierte el texto a otro idioma, no evalúa el sentimiento."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/sentiment-opinion-mining/overview"
+  },
+  {
+    "id": 51,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Reconocimiento de entidades (NER)",
+    "scenario": "Un sistema debe identificar automáticamente dentro de un texto los nombres de personas, organizaciones y fechas mencionadas.",
+    "question": "¿Qué capacidad de Azure AI Language corresponde?",
+    "options": [
+      { "id": "A", "text": "Named Entity Recognition (NER)" },
+      { "id": "B", "text": "Extracción de frases clave" },
+      { "id": "C", "text": "Análisis de sentimiento" },
+      { "id": "D", "text": "Speech to text" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El reconocimiento de entidades nombradas (NER) identifica y clasifica entidades como personas, lugares, organizaciones y fechas dentro de un texto.",
+      "whyIncorrect": {
+        "B": "La extracción de frases clave identifica temas generales, no entidades específicas categorizadas.",
+        "C": "El análisis de sentimiento mide tono emocional; no identifica entidades.",
+        "D": "Speech to text convierte audio en texto; no analiza entidades."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/named-entity-recognition/overview"
+  },
+  {
+    "id": 52,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Detección de idioma",
+    "scenario": "Una plataforma global recibe mensajes de soporte en distintos idiomas y necesita identificar automáticamente en qué idioma está escrito cada uno antes de procesarlo.",
+    "question": "¿Qué capacidad de Azure AI Language se necesita primero?",
+    "options": [
+      { "id": "A", "text": "Detección de idioma (Language Detection)" },
+      { "id": "B", "text": "Extracción de frases clave" },
+      { "id": "C", "text": "Reconocimiento de voz" },
+      { "id": "D", "text": "Custom Vision" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La detección de idioma identifica automáticamente el idioma en el que está escrito un texto, un paso previo útil antes de otros análisis o traducción.",
+      "whyIncorrect": {
+        "B": "La extracción de frases clave asume que ya se conoce el idioma para procesar el texto.",
+        "C": "El reconocimiento de voz trabaja con audio, no con texto escrito.",
+        "D": "Custom Vision es un servicio de visión por computadora, no de texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/overview"
+  },
+  {
+    "id": 53,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Speech to Text",
+    "scenario": "Una app de transcripción necesita convertir automáticamente audio de reuniones grabadas en texto escrito.",
+    "question": "¿Qué servicio de Azure se debe usar?",
+    "options": [
+      { "id": "A", "text": "Azure AI Speech - Speech to Text" },
+      { "id": "B", "text": "Azure AI Translator" },
+      { "id": "C", "text": "Azure AI Language - Key Phrase Extraction" },
+      { "id": "D", "text": "Azure AI Face" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Speech to Text (reconocimiento de voz) convierte audio hablado en texto escrito.",
+      "whyIncorrect": {
+        "B": "Translator traduce texto o voz entre idiomas, pero la necesidad aquí es solo transcribir.",
+        "C": "La extracción de frases clave trabaja sobre texto ya existente; no transcribe audio.",
+        "D": "Face analiza rostros; no procesa audio."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/speech-service/speech-to-text"
+  },
+  {
+    "id": 54,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Text to Speech",
+    "scenario": "Una app de accesibilidad necesita leer en voz alta el contenido de artículos de texto para usuarios con discapacidad visual.",
+    "question": "¿Qué servicio de Azure se debe usar?",
+    "options": [
+      { "id": "A", "text": "Azure AI Speech - Text to Speech" },
+      { "id": "B", "text": "Azure AI Language - Sentiment Analysis" },
+      { "id": "C", "text": "Azure AI Vision - OCR" },
+      { "id": "D", "text": "Azure AI Translator - traducción de texto" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Text to Speech convierte texto escrito en audio hablado de forma natural, ideal para accesibilidad.",
+      "whyIncorrect": {
+        "B": "El análisis de sentimiento evalúa el tono del texto; no lo convierte en audio.",
+        "C": "OCR extrae texto de imágenes; no genera audio.",
+        "D": "La traducción de texto cambia el idioma del texto, pero no lo convierte en voz por sí sola."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/speech-service/text-to-speech"
+  },
+  {
+    "id": 55,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Traducción de voz (Speech Translation)",
+    "scenario": "Una app necesita traducir en tiempo casi real lo que dice un hablante en inglés a texto o audio en español durante una videollamada.",
+    "question": "¿Qué capacidad de Azure AI Speech corresponde?",
+    "options": [
+      { "id": "A", "text": "Speech Translation" },
+      { "id": "B", "text": "Speech to Text únicamente" },
+      { "id": "C", "text": "Text to Speech únicamente" },
+      { "id": "D", "text": "Named Entity Recognition" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Speech Translation combina reconocimiento de voz y traducción para traducir audio hablado a otro idioma, en texto o voz, en tiempo casi real.",
+      "whyIncorrect": {
+        "B": "Speech to Text solo transcribe el audio original, sin traducir a otro idioma.",
+        "C": "Text to Speech solo genera audio a partir de texto; no traduce.",
+        "D": "NER identifica entidades en texto; no traduce voz."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/speech-service/speech-translation"
+  },
+  {
+    "id": 56,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Azure AI Translator",
+    "scenario": "Un sitio web de e-commerce necesita traducir automáticamente las descripciones de productos escritas a más de 20 idiomas.",
+    "question": "¿Qué servicio de Azure es el más adecuado?",
+    "options": [
+      { "id": "A", "text": "Azure AI Translator" },
+      { "id": "B", "text": "Azure AI Speech - Speech to Text" },
+      { "id": "C", "text": "Azure AI Language - Key Phrase Extraction" },
+      { "id": "D", "text": "Azure AI Face" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Azure AI Translator provee traducción automática de texto entre decenas de idiomas mediante API REST.",
+      "whyIncorrect": {
+        "B": "Speech to Text convierte audio en texto; no traduce entre idiomas.",
+        "C": "La extracción de frases clave identifica temas; no traduce contenido.",
+        "D": "Face es un servicio de análisis facial, no de traducción."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/translator/translator-overview"
+  },
+  {
+    "id": 57,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Conversational Language Understanding (CLU)",
+    "scenario": "Un equipo quiere construir un chatbot que entienda la intención del usuario (por ejemplo 'reservar vuelo') y extraiga entidades como la ciudad de destino, a partir de frases escritas de forma natural.",
+    "question": "¿Qué servicio de Azure AI Language se debe usar para entrenar este modelo de comprensión de intenciones?",
+    "options": [
+      { "id": "A", "text": "Conversational Language Understanding (CLU)" },
+      { "id": "B", "text": "Azure AI Translator" },
+      { "id": "C", "text": "Azure AI Face" },
+      { "id": "D", "text": "Azure AI Document Intelligence" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "CLU permite definir intenciones, entidades y frases de ejemplo (utterances) para entrenar un modelo que interprete las solicitudes de los usuarios en un chatbot.",
+      "whyIncorrect": {
+        "B": "Translator traduce texto; no interpreta intenciones.",
+        "C": "Face analiza rostros; no interpreta lenguaje.",
+        "D": "Document Intelligence extrae datos de documentos; no interpreta conversaciones."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/conversational-language-understanding/overview"
+  },
+  {
+    "id": 58,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Intents, entities y utterances en CLU",
+    "scenario": "Al configurar un modelo de comprensión de lenguaje conversacional, el equipo define la frase de ejemplo 'quiero reservar un vuelo a Madrid para mañana'.",
+    "question": "¿Cómo se denomina este tipo de frase de ejemplo dentro de CLU?",
+    "options": [
+      { "id": "A", "text": "Intent (intención)" },
+      { "id": "B", "text": "Utterance (enunciado de ejemplo)" },
+      { "id": "C", "text": "Entity (entidad)" },
+      { "id": "D", "text": "Endpoint" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Un 'utterance' es una frase de ejemplo que un usuario podría decir, usada para entrenar el modelo a reconocer una intención.",
+      "whyIncorrect": {
+        "A": "La intención (intent) es la categoría de acción que representa la frase (por ejemplo 'ReservarVuelo'), no la frase en sí.",
+        "C": "La entidad (entity) es un dato específico dentro de la frase (por ejemplo 'Madrid', 'mañana'), no la frase completa.",
+        "D": "Un endpoint es la URL donde se consulta el modelo desplegado, no un concepto de entrenamiento."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/conversational-language-understanding/overview"
+  },
+  {
+    "id": 59,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Resumen de texto",
+    "scenario": "Una empresa quiere generar automáticamente un resumen corto de documentos legales extensos, conservando las ideas más importantes.",
+    "question": "¿Qué capacidad de Azure AI Language es la adecuada?",
+    "options": [
+      { "id": "A", "text": "Resumen de texto (Text Summarization)" },
+      { "id": "B", "text": "Detección de idioma" },
+      { "id": "C", "text": "Reconocimiento de voz" },
+      { "id": "D", "text": "Detección de objetos" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La función de resumen de texto de Azure AI Language condensa documentos largos en un resumen extractivo o abstractivo con las ideas clave.",
+      "whyIncorrect": {
+        "B": "La detección de idioma solo identifica el idioma del texto; no lo resume.",
+        "C": "El reconocimiento de voz convierte audio en texto; no resume documentos.",
+        "D": "La detección de objetos es una tarea de visión por computadora."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/overview"
+  },
+  {
+    "id": 60,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Custom Translator",
+    "scenario": "Una empresa farmacéutica necesita que las traducciones respeten terminología médica muy específica de su industria, algo que el traductor genérico no maneja bien.",
+    "question": "¿Qué opción de Azure AI Translator permite adaptar el modelo a este vocabulario específico?",
+    "options": [
+      { "id": "A", "text": "Custom Translator (modelo de traducción personalizado)" },
+      { "id": "B", "text": "Speech to Text" },
+      { "id": "C", "text": "Key Phrase Extraction" },
+      { "id": "D", "text": "Face Verification" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Custom Translator permite entrenar un modelo de traducción adaptado a terminología y estilo específico de un dominio o industria.",
+      "whyIncorrect": {
+        "B": "Speech to Text convierte audio en texto; no traduce ni personaliza terminología.",
+        "C": "Key Phrase Extraction identifica temas; no traduce.",
+        "D": "Face Verification compara rostros; no tiene relación con traducción."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/translator/translator-overview"
+  },
+  {
+    "id": 61,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Identificación de idioma hablado",
+    "scenario": "Un sistema de atención telefónica multilingüe necesita detectar automáticamente en qué idioma está hablando el usuario antes de enrutar la llamada al agente correcto.",
+    "question": "¿Qué capacidad de Azure AI Speech se debe usar?",
+    "options": [
+      { "id": "A", "text": "Identificación de idioma hablado (Language Identification)" },
+      { "id": "B", "text": "Text to Speech" },
+      { "id": "C", "text": "Custom Vision" },
+      { "id": "D", "text": "Key Phrase Extraction" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La identificación de idioma de Azure AI Speech detecta automáticamente el idioma hablado en un audio antes o durante la transcripción.",
+      "whyIncorrect": {
+        "B": "Text to Speech genera audio a partir de texto; no identifica el idioma hablado.",
+        "C": "Custom Vision es un servicio de imágenes, no de audio.",
+        "D": "Key Phrase Extraction trabaja sobre texto ya transcrito; no identifica idioma hablado directamente del audio."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/speech-service/language-identification"
+  },
+  {
+    "id": 62,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Azure AI Language vs CLU",
+    "scenario": "Un equipo confunde el uso de Azure AI Language (análisis de texto) con el de Conversational Language Understanding para construir un asistente virtual que responda de forma conversacional.",
+    "question": "¿Qué diferencia clave existe entre ambos?",
+    "options": [
+      { "id": "A", "text": "No hay diferencia, son el mismo servicio" },
+      { "id": "B", "text": "Azure AI Language analiza texto (sentimiento, entidades, frases clave), mientras que CLU está diseñado específicamente para interpretar intenciones conversacionales en chatbots" },
+      { "id": "C", "text": "CLU solo traduce texto" },
+      { "id": "D", "text": "Azure AI Language solo funciona con audio" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Azure AI Language ofrece análisis de texto general (sentimiento, entidades, frases clave), mientras que CLU se especializa en modelar intenciones y entidades para interacciones conversacionales tipo chatbot.",
+      "whyIncorrect": {
+        "A": "Son servicios distintos con propósitos distintos aunque relacionados.",
+        "C": "CLU no traduce texto; interpreta intenciones.",
+        "D": "Azure AI Language trabaja principalmente con texto, no exclusivamente con audio."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/conversational-language-understanding/overview"
+  },
+  {
+    "id": 63,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Reconocimiento de hablante (Speaker Recognition)",
+    "scenario": "Un sistema de seguridad telefónico necesita verificar que la voz de quien llama corresponde a la de un cliente registrado previamente, comparando su voz.",
+    "question": "¿Qué capacidad de Azure AI Speech corresponde?",
+    "options": [
+      { "id": "A", "text": "Speaker Recognition (reconocimiento de hablante)" },
+      { "id": "B", "text": "Speech Translation" },
+      { "id": "C", "text": "Text to Speech" },
+      { "id": "D", "text": "Extracción de frases clave" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Speaker Recognition identifica o verifica la identidad de una persona a partir de las características de su voz.",
+      "whyIncorrect": {
+        "B": "Speech Translation traduce el contenido hablado; no verifica identidad.",
+        "C": "Text to Speech genera audio; no verifica identidad de voz.",
+        "D": "La extracción de frases clave trabaja con texto, no con características de voz."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/speech-service/speaker-recognition-overview"
+  },
+  {
+    "id": 64,
+    "domain": "Procesamiento de Lenguaje Natural (NLP)",
+    "topic": "Minería de opiniones (Opinion Mining)",
+    "scenario": "Una empresa quiere saber, dentro de una reseña de un hotel, qué aspectos específicos (la habitación, el servicio, el precio) generaron opiniones positivas o negativas por separado.",
+    "question": "¿Qué capacidad de Azure AI Language ofrece este nivel de detalle?",
+    "options": [
+      { "id": "A", "text": "Opinion Mining (minería de opiniones), dentro de Sentiment Analysis" },
+      { "id": "B", "text": "Detección de idioma general" },
+      { "id": "C", "text": "OCR" },
+      { "id": "D", "text": "Reconocimiento facial" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Opinion Mining es una función adicional del análisis de sentimiento que identifica aspectos específicos mencionados en el texto (como 'habitación' o 'precio') junto con la opinión asociada a cada uno.",
+      "whyIncorrect": {
+        "B": "La detección de idioma solo identifica el idioma; no analiza opiniones por aspecto.",
+        "C": "OCR extrae texto de imágenes; no analiza opiniones.",
+        "D": "El reconocimiento facial no tiene relación con análisis de texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/language-service/sentiment-opinion-mining/overview"
+  },
+  {
+    "id": 65,
+    "domain": "IA Generativa",
+    "topic": "Azure OpenAI Service - definición",
+    "scenario": "Una empresa quiere acceder a modelos de lenguaje de gran escala como GPT dentro de la infraestructura y controles de seguridad de Azure.",
+    "question": "¿Qué servicio de Azure ofrece esto?",
+    "options": [
+      { "id": "A", "text": "Azure OpenAI Service" },
+      { "id": "B", "text": "Azure AI Vision" },
+      { "id": "C", "text": "Azure AI Face" },
+      { "id": "D", "text": "Azure Data Factory" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Azure OpenAI Service da acceso a modelos fundacionales de OpenAI (como GPT) con la seguridad, cumplimiento y redes privadas de Azure.",
+      "whyIncorrect": {
+        "B": "Azure AI Vision es para análisis de imágenes, no modelos de lenguaje generativo.",
+        "C": "Azure AI Face analiza rostros; no genera texto.",
+        "D": "Azure Data Factory orquesta movimiento de datos; no aloja modelos generativos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/overview"
+  },
+  {
+    "id": 66,
+    "domain": "IA Generativa",
+    "topic": "Modelos fundacionales / LLMs",
+    "scenario": "Un modelo fue entrenado con enormes cantidades de texto de internet y puede adaptarse a muchas tareas distintas (resumir, traducir, responder preguntas) sin ser reentrenado desde cero para cada una.",
+    "question": "¿Cómo se denomina este tipo de modelo?",
+    "options": [
+      { "id": "A", "text": "Modelo fundacional / modelo de lenguaje de gran escala (LLM)" },
+      { "id": "B", "text": "Modelo de clustering" },
+      { "id": "C", "text": "Red neuronal convolucional exclusiva para imágenes" },
+      { "id": "D", "text": "Árbol de decisión simple" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Los modelos fundacionales (foundation models) o LLMs se entrenan con grandes volúmenes de datos y generalizan a múltiples tareas mediante prompts, sin reentrenamiento específico para cada una.",
+      "whyIncorrect": {
+        "B": "El clustering es una técnica de ML no supervisado para agrupar datos; no describe un modelo de lenguaje generalista.",
+        "C": "Las redes convolucionales se usan principalmente para imágenes; no son la base de los LLMs de texto.",
+        "D": "Un árbol de decisión es un modelo simple e interpretable, no comparable en escala ni capacidad generalista a un LLM."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/overview"
+  },
+  {
+    "id": 67,
+    "domain": "IA Generativa",
+    "topic": "Prompt Engineering básico",
+    "scenario": "Un usuario obtiene mejores respuestas de un modelo generativo al reformular su instrucción con más contexto y ejemplos claros de lo que espera, sin modificar el modelo en sí.",
+    "question": "¿Qué técnica está aplicando?",
+    "options": [
+      { "id": "A", "text": "Prompt Engineering" },
+      { "id": "B", "text": "Fine-tuning del modelo" },
+      { "id": "C", "text": "Entrenamiento supervisado desde cero" },
+      { "id": "D", "text": "Clustering de resultados" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El Prompt Engineering consiste en diseñar y refinar las instrucciones (prompts) dadas a un modelo generativo para obtener mejores resultados, sin modificar los pesos del modelo.",
+      "whyIncorrect": {
+        "B": "El fine-tuning implica reentrenar el modelo con datos adicionales, modificando sus parámetros, algo distinto a solo reformular el prompt.",
+        "C": "Entrenar desde cero implicaría crear un modelo nuevo completo, mucho más costoso.",
+        "D": "El clustering es una técnica no relacionada con la interacción por prompts."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/prompt-engineering"
+  },
+  {
+    "id": 68,
+    "domain": "IA Generativa",
+    "topic": "Few-shot vs Zero-shot prompting",
+    "scenario": "Un usuario incluye en su prompt 2 o 3 ejemplos de preguntas y respuestas deseadas antes de hacer la pregunta real, para guiar el estilo del modelo.",
+    "question": "¿Cómo se denomina esta técnica de prompting?",
+    "options": [
+      { "id": "A", "text": "Zero-shot prompting" },
+      { "id": "B", "text": "Few-shot prompting" },
+      { "id": "C", "text": "Fine-tuning" },
+      { "id": "D", "text": "Reinforcement learning" }
+    ],
+    "correctAnswer": "B",
+    "explanation": {
+      "whyCorrect": "Few-shot prompting incluye algunos ejemplos dentro del prompt para guiar al modelo hacia el formato o estilo de respuesta deseado.",
+      "whyIncorrect": {
+        "A": "Zero-shot prompting no incluye ningún ejemplo, solo la instrucción directa.",
+        "C": "Fine-tuning modifica los parámetros del modelo con un dataset de entrenamiento adicional; no es una técnica de redacción de prompts.",
+        "D": "Reinforcement learning es una técnica de entrenamiento por recompensas, no de redacción de prompts."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/prompt-engineering"
+  },
+  {
+    "id": 69,
+    "domain": "IA Generativa",
+    "topic": "Alucinaciones (hallucinations)",
+    "scenario": "Un modelo generativo responde con mucha confianza citando una fuente y datos que en realidad no existen ni son verificables.",
+    "question": "¿Cómo se denomina este fenómeno en IA generativa?",
+    "options": [
+      { "id": "A", "text": "Alucinación (hallucination)" },
+      { "id": "B", "text": "Overfitting" },
+      { "id": "C", "text": "Clustering incorrecto" },
+      { "id": "D", "text": "Latencia alta" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Una alucinación ocurre cuando un modelo generativo produce contenido que suena convincente pero es falso o inventado, sin base real.",
+      "whyIncorrect": {
+        "B": "Overfitting es un problema de modelos de ML tradicionales que memorizan datos de entrenamiento; no describe la invención de datos en generación de texto.",
+        "C": "El clustering es una técnica no relacionada con la generación de texto falso.",
+        "D": "La latencia se refiere al tiempo de respuesta, no a la veracidad del contenido generado."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/prompt-engineering"
+  },
+  {
+    "id": 70,
+    "domain": "IA Generativa",
+    "topic": "Grounding para reducir alucinaciones",
+    "scenario": "Para reducir el riesgo de que un chatbot invente información, el equipo decide que el modelo solo debe responder basándose en documentos internos de la empresa proporcionados como contexto.",
+    "question": "¿Qué práctica de IA generativa se está aplicando?",
+    "options": [
+      { "id": "A", "text": "Grounding (fundamentar las respuestas en datos propios/confiables)" },
+      { "id": "B", "text": "Aumentar la temperatura del modelo al máximo" },
+      { "id": "C", "text": "Eliminar el system message" },
+      { "id": "D", "text": "Ignorar el contexto proporcionado" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El grounding consiste en anclar las respuestas del modelo en datos confiables y verificables (como documentos internos), reduciendo el riesgo de alucinaciones.",
+      "whyIncorrect": {
+        "B": "Aumentar la temperatura al máximo incrementa la aleatoriedad y creatividad, lo que puede aumentar el riesgo de alucinaciones, no reducirlo.",
+        "C": "Eliminar el system message quita contexto e instrucciones de comportamiento, empeorando el control sobre las respuestas.",
+        "D": "Ignorar el contexto proporcionado es contrario a la práctica de grounding."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/prompt-engineering"
+  },
+  {
+    "id": 71,
+    "domain": "IA Generativa",
+    "topic": "Microsoft Copilot",
+    "scenario": "Un usuario de Microsoft 365 quiere generar automáticamente un resumen de un documento de Word y redactar un borrador de correo basado en ese resumen, usando IA integrada en las apps de Office.",
+    "question": "¿Qué producto de Microsoft ofrece esta capacidad?",
+    "options": [
+      { "id": "A", "text": "Microsoft Copilot" },
+      { "id": "B", "text": "Azure AI Face" },
+      { "id": "C", "text": "Azure AI Document Intelligence" },
+      { "id": "D", "text": "Azure Machine Learning Designer" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Microsoft Copilot integra modelos de IA generativa dentro de las aplicaciones de Microsoft 365 para asistir en tareas como redacción, resumen y análisis.",
+      "whyIncorrect": {
+        "B": "Azure AI Face analiza rostros; no genera contenido en Office.",
+        "C": "Document Intelligence extrae datos estructurados de documentos; no redacta contenido nuevo.",
+        "D": "Azure Machine Learning Designer es una herramienta de construcción de modelos de ML, no un asistente integrado en Office."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/microsoft-365-copilot/microsoft-365-copilot-overview"
+  },
+  {
+    "id": 72,
+    "domain": "IA Generativa",
+    "topic": "Generación de imágenes (text-to-image)",
+    "scenario": "Una empresa quiere generar imágenes originales a partir de descripciones de texto, por ejemplo 'un gato astronauta en la luna, estilo acuarela'.",
+    "question": "¿Qué tipo de modelo generativo se necesita?",
+    "options": [
+      { "id": "A", "text": "Un modelo de generación de imágenes a partir de texto (como DALL-E)" },
+      { "id": "B", "text": "Un modelo de clasificación de imágenes" },
+      { "id": "C", "text": "Un modelo de detección de objetos" },
+      { "id": "D", "text": "Un modelo de clustering de imágenes" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Los modelos de generación de imágenes a partir de texto (text-to-image), como DALL-E disponible en Azure OpenAI Service, crean imágenes originales a partir de descripciones textuales.",
+      "whyIncorrect": {
+        "B": "La clasificación de imágenes categoriza imágenes existentes; no genera nuevas.",
+        "C": "La detección de objetos ubica objetos en imágenes existentes; no crea imágenes nuevas.",
+        "D": "El clustering agrupa imágenes existentes; no genera contenido nuevo."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/overview"
+  },
+  {
+    "id": 73,
+    "domain": "IA Generativa",
+    "topic": "Tokens en modelos de lenguaje",
+    "scenario": "Al usar Azure OpenAI Service, el costo y los límites de una solicitud se miden en unidades que representan fragmentos de palabras del texto de entrada y salida.",
+    "question": "¿Cómo se denominan estas unidades?",
+    "options": [
+      { "id": "A", "text": "Tokens" },
+      { "id": "B", "text": "Clusters" },
+      { "id": "C", "text": "Epochs" },
+      { "id": "D", "text": "Features" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Los tokens son las unidades básicas de texto (partes de palabras) que los modelos de lenguaje procesan y que determinan el costo y los límites de una solicitud.",
+      "whyIncorrect": {
+        "B": "Los clusters son grupos de datos en aprendizaje no supervisado, sin relación con el conteo de texto de un LLM.",
+        "C": "Una epoch es una pasada completa por el dataset de entrenamiento, un concepto de entrenamiento de ML, no de facturación de uso de un LLM.",
+        "D": "Las features son variables de entrada en modelos de ML tradicionales, no unidades de texto de un LLM."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/models"
+  },
+  {
+    "id": 74,
+    "domain": "IA Generativa",
+    "topic": "Filtros de contenido en IA generativa",
+    "scenario": "Una empresa despliega un chatbot con Azure OpenAI y necesita bloquear automáticamente respuestas que contengan contenido violento, sexual o de autolesión.",
+    "question": "¿Qué capacidad ayuda a controlar este riesgo?",
+    "options": [
+      { "id": "A", "text": "Filtros de contenido (content filtering) de Azure OpenAI / Azure AI Content Safety" },
+      { "id": "B", "text": "Aumentar el número de tokens máximos" },
+      { "id": "C", "text": "Reducir la temperatura a 0 únicamente" },
+      { "id": "D", "text": "Usar un modelo de clustering adicional" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Azure OpenAI Service incluye filtros de contenido integrados (y se integra con Azure AI Content Safety) para detectar y bloquear categorías de contenido dañino en las respuestas generadas.",
+      "whyIncorrect": {
+        "B": "Aumentar el límite de tokens no filtra contenido dañino; solo permite respuestas más largas.",
+        "C": "Reducir la temperatura hace las respuestas más predecibles, pero no filtra específicamente contenido dañino.",
+        "D": "El clustering no es una técnica de moderación de contenido generativo."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/content-safety/overview"
+  },
+  {
+    "id": 75,
+    "domain": "IA Generativa",
+    "topic": "System message",
+    "scenario": "Un desarrollador configura una instrucción inicial fija que le indica al modelo 'eres un asistente de soporte técnico, responde solo sobre productos de la empresa X', antes de cada conversación del usuario.",
+    "question": "¿Cómo se denomina este componente del prompt en Azure OpenAI?",
+    "options": [
+      { "id": "A", "text": "System message" },
+      { "id": "B", "text": "User message únicamente" },
+      { "id": "C", "text": "Fine-tuning dataset" },
+      { "id": "D", "text": "Embedding" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El system message es una instrucción inicial que define el comportamiento, rol y restricciones del modelo antes de procesar los mensajes del usuario.",
+      "whyIncorrect": {
+        "B": "El user message es la entrada específica del usuario en cada turno, no la instrucción de comportamiento general.",
+        "C": "Un dataset de fine-tuning se usa para reentrenar el modelo, no para dar instrucciones en tiempo de ejecución.",
+        "D": "Un embedding es una representación numérica vectorial de texto, no una instrucción de comportamiento."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/prompt-engineering"
+  },
+  {
+    "id": 76,
+    "domain": "IA Generativa",
+    "topic": "Fine-tuning vs Prompt Engineering",
+    "scenario": "Una empresa necesita que el modelo adopte permanentemente un estilo y vocabulario muy específico de su marca, entrenándolo con cientos de ejemplos propios, más allá de lo que un prompt puede lograr.",
+    "question": "¿Qué técnica es la adecuada?",
+    "options": [
+      { "id": "A", "text": "Fine-tuning" },
+      { "id": "B", "text": "Zero-shot prompting únicamente" },
+      { "id": "C", "text": "Aumentar la temperatura" },
+      { "id": "D", "text": "Eliminar el system message" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "El fine-tuning reentrena el modelo con un dataset propio para ajustar de forma más profunda y permanente su estilo y comportamiento, más allá de lo que permite solo el prompt.",
+      "whyIncorrect": {
+        "B": "Zero-shot prompting no personaliza el modelo de forma permanente; solo da una instrucción puntual sin ejemplos.",
+        "C": "La temperatura controla la aleatoriedad de las respuestas, no el estilo de marca de forma consistente.",
+        "D": "Eliminar el system message reduce el control sobre el comportamiento, no lo mejora."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/models"
+  },
+  {
+    "id": 77,
+    "domain": "IA Generativa",
+    "topic": "Sesgo en modelos generativos",
+    "scenario": "Un modelo generativo entrenado principalmente con texto de internet reproduce estereotipos y sesgos presentes en esos datos al generar contenido.",
+    "question": "¿Qué consideración de IA responsable es más relevante para mitigar este riesgo?",
+    "options": [
+      { "id": "A", "text": "Equidad (Fairness), evaluando y mitigando sesgos en las salidas del modelo" },
+      { "id": "B", "text": "Latencia de respuesta" },
+      { "id": "C", "text": "Costo por token" },
+      { "id": "D", "text": "Número de parámetros del modelo" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "La equidad exige identificar y mitigar sesgos que el modelo pueda haber aprendido de sus datos de entrenamiento, evitando resultados discriminatorios o estereotipados.",
+      "whyIncorrect": {
+        "B": "La latencia es una métrica de rendimiento técnico, no relacionada con sesgos de contenido.",
+        "C": "El costo por token es una consideración económica, no de responsabilidad ética.",
+        "D": "El número de parámetros describe el tamaño del modelo; no se relaciona directamente con la mitigación de sesgos."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  },
+  {
+    "id": 78,
+    "domain": "IA Generativa",
+    "topic": "Embeddings",
+    "scenario": "Un sistema necesita representar frases de texto como vectores numéricos para poder comparar qué tan similares son semánticamente entre sí.",
+    "question": "¿Qué técnica de IA generativa/NLP se usa para esto?",
+    "options": [
+      { "id": "A", "text": "Embeddings" },
+      { "id": "B", "text": "OCR" },
+      { "id": "C", "text": "Detección de objetos" },
+      { "id": "D", "text": "Clustering jerárquico de imágenes" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Los embeddings convierten texto en vectores numéricos que capturan el significado semántico, permitiendo medir similitud entre frases o documentos.",
+      "whyIncorrect": {
+        "B": "OCR extrae texto de imágenes; no genera representaciones vectoriales de significado.",
+        "C": "La detección de objetos es una tarea de visión por computadora, no de comparación semántica de texto.",
+        "D": "El clustering jerárquico de imágenes no aplica a comparación semántica de texto."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/models"
+  },
+  {
+    "id": 79,
+    "domain": "IA Generativa",
+    "topic": "GitHub Copilot",
+    "scenario": "Un desarrollador quiere recibir sugerencias automáticas de código mientras escribe, generadas por un modelo de IA entrenado con grandes cantidades de código público.",
+    "question": "¿Qué producto de Microsoft/GitHub ofrece esta capacidad?",
+    "options": [
+      { "id": "A", "text": "GitHub Copilot" },
+      { "id": "B", "text": "Azure AI Face" },
+      { "id": "C", "text": "Azure AI Document Intelligence" },
+      { "id": "D", "text": "Azure AI Content Safety" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "GitHub Copilot usa modelos generativos entrenados con código para sugerir líneas o bloques de código en tiempo real dentro del editor.",
+      "whyIncorrect": {
+        "B": "Azure AI Face analiza rostros; no genera código.",
+        "C": "Document Intelligence extrae datos de documentos; no sugiere código.",
+        "D": "Content Safety modera contenido dañino; no genera sugerencias de código."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/ai-services/openai/overview"
+  },
+  {
+    "id": 80,
+    "domain": "IA Generativa",
+    "topic": "Revisión humana en IA generativa",
+    "scenario": "Una empresa publica automáticamente, sin revisión humana, cualquier texto generado por su chatbot como respuesta oficial a clientes, incluyendo posibles alucinaciones.",
+    "question": "¿Qué práctica de IA responsable debería agregar la empresa antes de publicar respuestas sensibles?",
+    "options": [
+      { "id": "A", "text": "Revisión humana (human-in-the-loop) antes de publicar respuestas de alto impacto" },
+      { "id": "B", "text": "Aumentar la temperatura del modelo para mayor creatividad" },
+      { "id": "C", "text": "Eliminar el system message" },
+      { "id": "D", "text": "Ninguna, la revisión humana no aporta valor en IA generativa" }
+    ],
+    "correctAnswer": "A",
+    "explanation": {
+      "whyCorrect": "Incorporar revisión humana antes de publicar respuestas de alto impacto reduce el riesgo de difundir alucinaciones o contenido inapropiado generado por el modelo.",
+      "whyIncorrect": {
+        "B": "Aumentar la temperatura incrementa la creatividad y el riesgo de respuestas menos predecibles; no mitiga el riesgo de alucinaciones.",
+        "C": "Eliminar el system message reduce el control sobre el comportamiento del modelo.",
+        "D": "La revisión humana es una práctica clave de IA responsable, especialmente en escenarios de alto riesgo."
+      }
+    },
+    "docReference": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+  }
+]
